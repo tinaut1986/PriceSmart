@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">PriceSmart</string>
+    <string name="screen_compare">Compare</string>
+    <string name="screen_add">Add</string>
+    <string name="screen_settings">Settings</string>
+    <string name="screen_edit">Edit</string>
+    
+    <string name="settings_appearance">Appearance</string>
+    <string name="settings_dark_mode">Night Mode</string>
+    <string name="settings_dark_mode_desc">Use dark colors in the interface</string>
+    <string name="settings_language">Language</string>
+    <string name="settings_language_desc">Select app language</string>
+    <string name="settings_theme">System Theme</string>
+    <string name="settings_theme_system">Follow system</string>
+    <string name="settings_theme_light">Light</string>
+    <string name="settings_theme_dark">Dark</string>
+    <string name="settings_version">Version %s</string>
+    
+    <string name="compare_empty_title">Compare products smartly</string>
+    <string name="compare_empty_desc">Add products to discover which one offers the best price per unit</string>
+    <string name="compare_add_first">Add first product</string>
+    <string name="compare_products_count">%d products</string>
+    <string name="compare_ordered_by">Sorted by best price</string>
+    <string name="compare_best_option">BEST OPTION</string>
+    <string name="compare_edit_product">Edit product</string>
+    <string name="compare_delete_product">Delete product</string>
+    <string name="compare_price_per">Price per %s</string>
+    <string name="compare_more_expensive">%d%% more expensive than the best option</string>
+    
+    <string name="add_product_title">Add product</string>
+    <string name="edit_product_title">Edit product</string>
+    <string name="product_data_desc">Complete the data to compare the real price</string>
+    <string name="product_name">Product name</string>
+    <string name="product_name_placeholder">e.g.: Fried tomato</string>
+    <string name="product_price">Total Price (€)</string>
+    <string name="product_units_per_package">Units per package</string>
+    <string name="product_units_placeholder">e.g.: 3 (cans)</string>
+    <string name="product_quantity_per_unit">Qty. per unit</string>
+    <string name="product_quantity_placeholder">e.g.: 250</string>
+    <string name="product_unit_label">Unit</string>
+    <string name="product_calculation_title">Automatic Calculation</string>
+    <string name="product_total_label">Total</string>
+    <string name="product_save_changes">SAVE CHANGES</string>
+    <string name="product_add_button">ADD PRODUCT</string>
+    <string name="product_placeholder_name">Product</string>
+    
+    <string name="unit_kg">kg</string>
+    <string name="unit_g">g</string>
+    <string name="unit_l">l</string>
+    <string name="unit_ml">ml</string>
+    <string name="unit_units">units</string>
+    <string name="unit_pack">pack</string>
+    <string name="unit_box">box</string>
+</resources>

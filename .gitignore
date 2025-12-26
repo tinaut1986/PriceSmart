@@ -1,0 +1,25 @@
+# Archivos de build y binarios
+.gradle/
+build/
+app/build/
+*.apk
+*.aar
+*.jks
+
+# Configuración del IDE (Android Studio / IntelliJ)
+.idea/
+*.iml
+*.iws
+local.properties
+
+# Archivos del sistema
+.DS_Store
+Thumbs.db
+
+# Herramientas externas
+# Ignoramos el contenido de .agent pero EXCEPTUAMOS los workflows para que se guarden en Git
+.agent/*
+!.agent/workflows/
+
+.gemini/
+.antigravityignore

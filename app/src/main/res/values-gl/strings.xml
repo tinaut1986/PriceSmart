@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">PriceSmart</string>
+    <string name="screen_compare">Comparar</string>
+    <string name="screen_add">Engadir</string>
+    <string name="screen_settings">Axustes</string>
+    <string name="screen_edit">Editar</string>
+    
+    <string name="settings_appearance">Aparencia</string>
+    <string name="settings_dark_mode">Modo Noite</string>
+    <string name="settings_dark_mode_desc">Usar cores escuras na interface</string>
+    <string name="settings_language">Idioma</string>
+    <string name="settings_language_desc">Selecciona o idioma da app</string>
+    <string name="settings_theme">Tema do sistema</string>
+    <string name="settings_theme_system">Seguir o sistema</string>
+    <string name="settings_theme_light">Claro</string>
+    <string name="settings_theme_dark">Escuro</string>
+    <string name="settings_version">Versión %s</string>
+    
+    <string name="compare_empty_title">Compara produtos intelixentemente</string>
+    <string name="compare_empty_desc">Engade produtos para descubrir cal che ofrece o mellor prezo por unidade</string>
+    <string name="compare_add_first">Engadir primeiro produto</string>
+    <string name="compare_products_count">%d produtos</string>
+    <string name="compare_ordered_by">Ordenado polo mellor prezo</string>
+    <string name="compare_best_option">MELLOR OPCIÓN</string>
+    <string name="compare_edit_product">Editar produto</string>
+    <string name="compare_delete_product">Eliminar produto</string>
+    <string name="compare_price_per">Prezo por %s</string>
+    <string name="compare_more_expensive">Un %d%% máis caro que a mellor opción</string>
+    
+    <string name="add_product_title">Engadir produto</string>
+    <string name="edit_product_title">Editar produto</string>
+    <string name="product_data_desc">Completa os datos para comparar o prezo real</string>
+    <string name="product_name">Nome do produto</string>
+    <string name="product_name_placeholder">ex: Tomate frito</string>
+    <string name="product_price">Prezo Total (€)</string>
+    <string name="product_units_per_package">Unidades por paquete</string>
+    <string name="product_units_placeholder">ex: 3 (latas)</string>
+    <string name="product_quantity_per_unit">Cant. por unidade</string>
+    <string name="product_quantity_placeholder">ex: 250</string>
+    <string name="product_unit_label">Unidade</string>
+    <string name="product_calculation_title">Cálculo Automático</string>
+    <string name="product_total_label">Total</string>
+    <string name="product_save_changes">GARDAR CAMBIOS</string>
+    <string name="product_add_button">ENGADIR PRODUTO</string>
+    <string name="product_placeholder_name">Produto</string>
+    
+    <string name="unit_kg">kg</string>
+    <string name="unit_g">g</string>
+    <string name="unit_l">l</string>
+    <string name="unit_ml">ml</string>
+    <string name="unit_units">unidades</string>
+    <string name="unit_pack">pack</string>
+    <string name="unit_box">caixa</string>
+</resources>
