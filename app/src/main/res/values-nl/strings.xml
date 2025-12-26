@@ -51,4 +51,29 @@
     <string name="unit_units">stuks</string>
     <string name="unit_pack">pack</string>
     <string name="unit_box">doos</string>
+
+    <string name="offer_title">Speciale Aanbieding</string>
+    <string name="offer_none">Geen aanbieding</string>
+    <string name="offer_pct_discount">Korting (%)</string>
+    <string name="offer_buy_x_pay_y">X halen Y betalen (bijv: 3x2)</string>
+    <string name="offer_nth_unit_pct">N-de eenheid aan -%</string>
+    <string name="offer_fixed_price">X eenheden voor vaste €</string>
+    <string name="offer_extra_qty">Extra hoeveelheid gratis (%)</string>
+    
+    <string name="offer_desc_pct">-%s%% korting</string>
+    <string name="offer_desc_buy_x_pay_y">%s halen %s betalen</string>
+    <string name="offer_desc_nth_unit">%sde eenheid aan -%s%%</string>
+    <string name="offer_desc_fixed_price">%s stuks voor %s€</string>
+    <string name="offer_desc_extra_qty">+%s%% gratis</string>
+    
+    <string name="offer_savings">%d%% besparing</string>
+
+    <string name="offer_value_pct">Kortingspercentage</string>
+    <string name="offer_value_buy_x">Eenheden die je koopt (X)</string>
+    <string name="offer_value_pay_y">Eenheden die je betaalt (Y)</string>
+    <string name="offer_value_nth_unit">Eenheid met korting (bijv: 2)</string>
+    <string name="offer_value_2nd_disc">Toegepaste korting (%)</string>
+    <string name="offer_value_fixed_qty">Aantal eenheden</string>
+    <string name="offer_value_fixed_price">Totale pakketprijs</string>
+    <string name="offer_value_extra_qty">Extra (%)</string>
 </resources>

@@ -51,4 +51,29 @@
     <string name="unit_units">单位</string>
     <string name="unit_pack">包</string>
     <string name="unit_box">箱</string>
+
+    <string name="offer_title">特别优惠</string>
+    <string name="offer_none">无优惠</string>
+    <string name="offer_pct_discount">折扣 (%)</string>
+    <string name="offer_buy_x_pay_y">买 X 付 Y (例如：3x2)</string>
+    <string name="offer_nth_unit_pct">第 N 件 -% 折扣</string>
+    <string name="offer_fixed_price">X 件固定金额 €</string>
+    <string name="offer_extra_qty">额外加量免费 (%)</string>
+    
+    <string name="offer_desc_pct">-%s%% 折扣</string>
+    <string name="offer_desc_buy_x_pay_y">买 %s 付 %s</string>
+    <string name="offer_desc_nth_unit">第 %s 件 -%s%% 折扣</string>
+    <string name="offer_desc_fixed_price">%s 件共 %s€</string>
+    <string name="offer_desc_extra_qty">额外 +%s%% 加量</string>
+    
+    <string name="offer_savings">节省 %d%%</string>
+
+    <string name="offer_value_pct">折扣百分比</string>
+    <string name="offer_value_buy_x">购买单位数 (X)</string>
+    <string name="offer_value_pay_y">支付单位数 (Y)</string>
+    <string name="offer_value_nth_unit">享受折扣的件数 (例如：2)</string>
+    <string name="offer_value_2nd_disc">所选折扣 (%)</string>
+    <string name="offer_value_fixed_qty">单位数量</string>
+    <string name="offer_value_fixed_price">组合总价</string>
+    <string name="offer_value_extra_qty">额外 (%)</string>
 </resources>

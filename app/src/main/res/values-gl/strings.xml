@@ -51,4 +51,29 @@
     <string name="unit_units">unidades</string>
     <string name="unit_pack">pack</string>
     <string name="unit_box">caixa</string>
+
+    <string name="offer_title">Oferta Especial</string>
+    <string name="offer_none">Sen oferta</string>
+    <string name="offer_pct_discount">Desconto (%)</string>
+    <string name="offer_buy_x_pay_y">Leva X paga Y (ex: 3x2)</string>
+    <string name="offer_nth_unit_pct">Nª unidade ao -%</string>
+    <string name="offer_fixed_price">X unidades por € fixo</string>
+    <string name="offer_extra_qty">Cantidade extra gratis (%)</string>
+    
+    <string name="offer_desc_pct">-%s%% de desconto</string>
+    <string name="offer_desc_buy_x_pay_y">Leva %s e paga %s</string>
+    <string name="offer_desc_nth_unit">%sª unidade ao -%s%%</string>
+    <string name="offer_desc_fixed_price">%s uds. por %s€</string>
+    <string name="offer_desc_extra_qty">+%s%% gratis</string>
+    
+    <string name="offer_savings">Afórrate un %d%%</string>
+
+    <string name="offer_value_pct">Porcentaxe de desconto</string>
+    <string name="offer_value_buy_x">Unidades que compras (X)</string>
+    <string name="offer_value_pay_y">Unidades que pagas (Y)</string>
+    <string name="offer_value_nth_unit">Unidade que recibe o desconto (ex: 2)</string>
+    <string name="offer_value_2nd_disc">Desconto aplicado (%)</string>
+    <string name="offer_value_fixed_qty">Cantidade de unidades</string>
+    <string name="offer_value_fixed_price">Prezo total do lote</string>
+    <string name="offer_value_extra_qty">Extra (%)</string>
 </resources>

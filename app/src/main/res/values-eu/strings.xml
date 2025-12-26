@@ -51,4 +51,29 @@
     <string name="unit_units">unitate</string>
     <string name="unit_pack">paketea</string>
     <string name="unit_box">kutxa</string>
+
+    <string name="offer_title">Eskaintza Berezia</string>
+    <string name="offer_none">Eskaintzarik gabe</string>
+    <string name="offer_pct_discount">Deskontua (%)</string>
+    <string name="offer_buy_x_pay_y">Eraman X ordaindu Y (adib: 3x2)</string>
+    <string name="offer_nth_unit_pct">N-garren unitatea -%</string>
+    <string name="offer_fixed_price">X unitate € finko baten truke</string>
+    <string name="offer_extra_qty">Kantitate gehigarria doan (%)</string>
+    
+    <string name="offer_desc_pct">%% -%s-ko deskontua</string>
+    <string name="offer_desc_buy_x_pay_y">Eraman %s ordaindu %s</string>
+    <string name="offer_desc_nth_unit">%s. unitatea %% -%s-ra</string>
+    <string name="offer_desc_fixed_price">%s unitate %s€-an</string>
+    <string name="offer_desc_extra_qty">%% +%s doan</string>
+    
+    <string name="offer_savings">%% %d aurreztu</string>
+
+    <string name="offer_value_pct">Deskontu portzentajea</string>
+    <string name="offer_value_buy_x">Eramaten dituzun unitateak (X)</string>
+    <string name="offer_value_pay_y">Ordaintzen dituzun unitateak (Y)</string>
+    <string name="offer_value_nth_unit">Deskontua duen unitatea (adib: 2)</string>
+    <string name="offer_value_2nd_disc">Aplikaturiko deskontua (%)</string>
+    <string name="offer_value_fixed_qty">Unitate kantitatea</string>
+    <string name="offer_value_fixed_price">Multzoaren prezio osoa</string>
+    <string name="offer_value_extra_qty">Gehigarria (%)</string>
 </resources>

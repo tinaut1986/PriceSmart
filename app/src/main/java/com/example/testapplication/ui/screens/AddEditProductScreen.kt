@@ -22,6 +22,8 @@ import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.testapplication.model.Product
+import com.example.testapplication.model.Offer
+import com.example.testapplication.model.OfferType
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -31,9 +33,12 @@ fun AddEditProductScreen(
     onProductAction: (Product) -> Unit
 ) {
     var name by remember { mutableStateOf(existingProduct?.name ?: "") }
-    var price by remember { mutableStateOf(existingProduct?.price?.let { String.format(Locale.getDefault(), "%.2f", it) } ?: "") }
+    var price by remember { mutableStateOf(existingProduct?.price?.let { String.format(Locale.US, "%.2f", it) } ?: "") }
     var unitsPerPackage by remember { mutableStateOf(existingProduct?.unitsPerPackage?.toString() ?: "1") }
     var quantityPerUnit by remember { mutableStateOf(existingProduct?.quantityPerUnit?.let { if(it % 1 == 0.0) it.toInt().toString() else it.toString() } ?: "") }
+    var offerType by remember { mutableStateOf(existingProduct?.offer?.type ?: OfferType.NONE) }
+    var offerValue1 by remember { mutableStateOf(existingProduct?.offer?.value1?.let { if(it != 0.0) (if(it % 1 == 0.0) it.toInt().toString() else it.toString()) else "" } ?: "") }
+    var offerValue2 by remember { mutableStateOf(existingProduct?.offer?.value2?.let { if(it != 0.0) (if(it % 1 == 0.0) it.toInt().toString() else it.toString()) else "" } ?: "") }
     val unitOptions = listOf(
         "kg" to R.string.unit_kg,
         "g" to R.string.unit_g,
@@ -168,6 +173,104 @@ fun AddEditProductScreen(
                     }
                 }
             }
+
+            // Offer Section
+            var offerExpanded by remember { mutableStateOf(false) }
+            val offerOptions = listOf(
+                OfferType.NONE to R.string.offer_none,
+                OfferType.PERCENTAGE_DISCOUNT to R.string.offer_pct_discount,
+                OfferType.BUY_X_PAY_Y to R.string.offer_buy_x_pay_y,
+                OfferType.NTH_UNIT_DISCOUNT to R.string.offer_nth_unit_pct,
+                OfferType.FIXED_PRICE_FOR_X to R.string.offer_fixed_price,
+                OfferType.EXTRA_QUANTITY to R.string.offer_extra_qty
+            )
+
+            HorizontalDivider(modifier = Modifier.padding(vertical = 8.dp), color = if (isDarkMode) Color(0xFF424242) else Color(0xFFEEEEEE))
+            
+            Column(verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    Icon(Icons.Filled.LocalOffer, contentDescription = null, tint = Color(0xFF2E7D32), modifier = Modifier.size(20.dp))
+                    Spacer(modifier = Modifier.width(8.dp))
+                    Text(stringResource(R.string.offer_title), style = MaterialTheme.typography.titleMedium, fontWeight = FontWeight.Bold)
+                }
+
+                ExposedDropdownMenuBox(
+                    expanded = offerExpanded,
+                    onExpandedChange = { offerExpanded = !offerExpanded },
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    OutlinedTextField(
+                        value = stringResource(offerOptions.find { it.first == offerType }?.second ?: R.string.offer_none),
+                        onValueChange = {},
+                        readOnly = true,
+                        label = { Text(stringResource(R.string.offer_title)) },
+                        trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = offerExpanded) },
+                        colors = textFieldColors,
+                        modifier = Modifier.fillMaxWidth().menuAnchor(MenuAnchorType.PrimaryNotEditable, true),
+                        shape = RoundedCornerShape(14.dp)
+                    )
+                    ExposedDropdownMenu(
+                        expanded = offerExpanded,
+                        onDismissRequest = { offerExpanded = false }
+                    ) {
+                        offerOptions.forEach { (type, resId) ->
+                            DropdownMenuItem(
+                                text = { Text(stringResource(resId)) },
+                                onClick = {
+                                    offerType = type
+                                    offerExpanded = false
+                                }
+                            )
+                        }
+                    }
+                }
+
+                if (offerType != OfferType.NONE) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        val label1 = when (offerType) {
+                            OfferType.PERCENTAGE_DISCOUNT -> R.string.offer_value_pct
+                            OfferType.BUY_X_PAY_Y -> R.string.offer_value_buy_x
+                            OfferType.NTH_UNIT_DISCOUNT -> R.string.offer_value_nth_unit
+                            OfferType.FIXED_PRICE_FOR_X -> R.string.offer_value_fixed_qty
+                            OfferType.EXTRA_QUANTITY -> R.string.offer_value_extra_qty
+                            else -> R.string.offer_none
+                        }
+                        
+                        OutlinedTextField(
+                            value = offerValue1,
+                            onValueChange = { if (it.all { c -> c.isDigit() || c == '.' || c == ',' }) offerValue1 = it.replace(',', '.') },
+                            label = { Text(stringResource(label1)) },
+                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                            modifier = Modifier.weight(1f),
+                            shape = RoundedCornerShape(14.dp),
+                            colors = textFieldColors,
+                            singleLine = true
+                        )
+
+                        if (offerType == OfferType.BUY_X_PAY_Y || offerType == OfferType.FIXED_PRICE_FOR_X || offerType == OfferType.NTH_UNIT_DISCOUNT) {
+                            val label2 = when (offerType) {
+                                OfferType.BUY_X_PAY_Y -> R.string.offer_value_pay_y
+                                OfferType.FIXED_PRICE_FOR_X -> R.string.offer_value_fixed_price
+                                OfferType.NTH_UNIT_DISCOUNT -> R.string.offer_value_2nd_disc
+                                else -> R.string.offer_none
+                            }
+                            OutlinedTextField(
+                                value = offerValue2,
+                                onValueChange = { if (it.all { c -> c.isDigit() || c == '.' || c == ',' }) offerValue2 = it.replace(',', '.') },
+                                label = { Text(stringResource(label2)) },
+                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                                modifier = Modifier.weight(1f),
+                                shape = RoundedCornerShape(14.dp),
+                                colors = textFieldColors,
+                                singleLine = true
+                            )
+                        }
+                    }
+                }
+            }
             
             val priceVal = price.toDoubleOrNull() ?: 0.0
             val unitsVal = unitsPerPackage.toIntOrNull() ?: 1
@@ -179,7 +282,12 @@ fun AddEditProductScreen(
                     price = priceVal,
                     unitsPerPackage = unitsVal,
                     quantityPerUnit = quantVal,
-                    unit = selectedUnitId
+                    unit = selectedUnitId,
+                    offer = Offer(
+                        type = offerType,
+                        value1 = offerValue1.toDoubleOrNull() ?: 0.0,
+                        value2 = offerValue2.toDoubleOrNull() ?: 0.0
+                    )
                 )
                 
                 Surface(
@@ -232,6 +340,14 @@ fun AddEditProductScreen(
                                     fontWeight = FontWeight.ExtraBold,
                                     color = Color(0xFF2E7D32)
                                 )
+                                if (tempProduct.savingPercentage > 0) {
+                                    Text(
+                                        stringResource(R.string.offer_savings, tempProduct.savingPercentage),
+                                        style = MaterialTheme.typography.labelSmall,
+                                        color = Color(0xFF4CAF50),
+                                        fontWeight = FontWeight.Bold
+                                    )
+                                }
                             }
                         }
                     }
@@ -255,7 +371,12 @@ fun AddEditProductScreen(
                             price = priceValue,
                             unitsPerPackage = unitsValue,
                             quantityPerUnit = quantValue,
-                            unit = selectedUnitId
+                            unit = selectedUnitId,
+                            offer = Offer(
+                                type = offerType,
+                                value1 = offerValue1.toDoubleOrNull() ?: 0.0,
+                                value2 = offerValue2.toDoubleOrNull() ?: 0.0
+                            )
                         )
                     )
                 }

@@ -51,4 +51,29 @@
     <string name="unit_units">個</string>
     <string name="unit_pack">パック</string>
     <string name="unit_box">箱</string>
+
+    <string name="offer_title">特別オファー</string>
+    <string name="offer_none">オファーなし</string>
+    <string name="offer_pct_discount">割引 (%)</string>
+    <string name="offer_buy_x_pay_y">X個買うとY個分の価格（例：3x2）</string>
+    <string name="offer_nth_unit_pct">N個目が-%割引</string>
+    <string name="offer_fixed_price">X個で固定価格€</string>
+    <string name="offer_extra_qty">増量無料 (%)</string>
+    
+    <string name="offer_desc_pct">%s%% 割引</string>
+    <string name="offer_desc_buy_x_pay_y">%s個買って%s個分の価格</string>
+    <string name="offer_desc_nth_unit">%s個目が %s%% 割引</string>
+    <string name="offer_desc_fixed_price">%s個で %s€</string>
+    <string name="offer_desc_extra_qty">+%s%% 増量</string>
+    
+    <string name="offer_savings">%d%% お得</string>
+
+    <string name="offer_value_pct">割引率</string>
+    <string name="offer_value_buy_x">購入する個数 (X)</string>
+    <string name="offer_value_pay_y">支払う個数 (Y)</string>
+    <string name="offer_value_nth_unit">割引対象の個数目 (例：2)</string>
+    <string name="offer_value_2nd_disc">適用される割引 (%)</string>
+    <string name="offer_value_fixed_qty">個数</string>
+    <string name="offer_value_fixed_price">セットの合計価格</string>
+    <string name="offer_value_extra_qty">増量分 (%)</string>
 </resources>

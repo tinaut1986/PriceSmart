@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.example.testapplication.model.Product
+import com.example.testapplication.model.OfferType
 import kotlin.math.roundToInt
 
 @Composable
@@ -200,6 +201,55 @@ fun ProductCard(
                         fontWeight = FontWeight.Bold,
                         color = if (isDarkMode) Color.White else Color(0xFF333333)
                     )
+
+                    if (product.offer.type != OfferType.NONE) {
+                        Surface(
+                            color = Color(0xFFFF9800).copy(alpha = 0.15f),
+                            contentColor = Color(0xFFE65100),
+                            shape = RoundedCornerShape(8.dp),
+                            modifier = Modifier.padding(top = 4.dp)
+                        ) {
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                            ) {
+                                Icon(
+                                    Icons.Filled.LocalOffer, 
+                                    contentDescription = null, 
+                                    modifier = Modifier.size(14.dp),
+                                    tint = Color(0xFFE65100)
+                                )
+                                Spacer(modifier = Modifier.width(6.dp))
+                                val offerLabel = when (product.offer.type) {
+                                    OfferType.PERCENTAGE_DISCOUNT -> stringResource(R.string.offer_desc_pct, 
+                                        if (product.offer.value1 % 1 == 0.0) product.offer.value1.toInt().toString() else product.offer.value1.toString())
+                                    OfferType.BUY_X_PAY_Y -> stringResource(R.string.offer_desc_buy_x_pay_y, 
+                                        product.offer.value1.toInt().toString(), product.offer.value2.toInt().toString())
+                                    OfferType.NTH_UNIT_DISCOUNT -> stringResource(R.string.offer_desc_nth_unit, 
+                                        product.offer.value1.toInt().toString(),
+                                        if (product.offer.value2 % 1 == 0.0) product.offer.value2.toInt().toString() else product.offer.value2.toString())
+                                    OfferType.FIXED_PRICE_FOR_X -> stringResource(R.string.offer_desc_fixed_price, 
+                                        product.offer.value1.toInt().toString(), 
+                                        if (product.offer.value2 % 1 == 0.0) product.offer.value2.toInt().toString() else String.format("%.2f", product.offer.value2))
+                                    OfferType.EXTRA_QUANTITY -> stringResource(R.string.offer_desc_extra_qty, 
+                                        if (product.offer.value1 % 1 == 0.0) product.offer.value1.toInt().toString() else product.offer.value1.toString())
+                                    else -> ""
+                                }
+
+                                val finalLabel = if (product.savingPercentage > 0) {
+                                    "$offerLabel (-${product.savingPercentage}%)"
+                                } else {
+                                    offerLabel
+                                }
+
+                                Text(
+                                    finalLabel, 
+                                    style = MaterialTheme.typography.labelSmall, 
+                                    fontWeight = FontWeight.ExtraBold
+                                )
+                            }
+                        }
+                    }
                 }
                 
                 Row(
@@ -294,6 +344,15 @@ fun ProductCard(
                         style = MaterialTheme.typography.bodySmall,
                         color = Color.Gray
                     )
+                    if (product.savingPercentage > 0) {
+                        Text(
+                            "€${String.format(Locale.getDefault(), "%.2f", product.pricePerBaseUnitWithoutOffer)}/$baseUnitName",
+                            style = MaterialTheme.typography.bodySmall.copy(
+                                textDecoration = androidx.compose.ui.text.style.TextDecoration.LineThrough
+                            ),
+                            color = Color.Gray
+                        )
+                    }
                     Text(
                         "€${String.format(Locale.getDefault(), "%.4f", product.pricePerBaseUnit)}/$baseUnitName",
                         style = MaterialTheme.typography.titleLarge,
