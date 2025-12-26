@@ -176,7 +176,10 @@ fun SettingsLanguageItem(
     onLanguageChange: (String) -> Unit
 ) {
     var expanded by remember { mutableStateOf(false) }
-    val languages = listOf("Español", "English", "Català", "Galego", "Euskara")
+    val languages = listOf(
+        "Español", "English", "Català", "Galego", "Euskara",
+        "Français", "Português", "Deutsch", "Nederlands", "中文", "日本語"
+    )
     
     Row(
         modifier = Modifier

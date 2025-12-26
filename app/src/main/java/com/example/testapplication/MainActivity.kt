@@ -68,6 +68,12 @@ fun PriceComparatorApp() {
                     "ca" -> "Català"
                     "gl" -> "Galego"
                     "eu" -> "Euskara"
+                    "fr" -> "Français"
+                    "pt" -> "Português"
+                    "de" -> "Deutsch"
+                    "nl" -> "Nederlands"
+                    "zh" -> "中文"
+                    "ja" -> "日本語"
                     else -> "Español"
                 }
             }       
@@ -175,6 +181,12 @@ fun PriceComparatorApp() {
                                 "Català" -> "ca"
                                 "Galego" -> "gl"
                                 "Euskara" -> "eu"
+                                "Français" -> "fr"
+                                "Português" -> "pt"
+                                "Deutsch" -> "de"
+                                "Nederlands" -> "nl"
+                                "中文" -> "zh"
+                                "日本語" -> "ja"
                                 else -> "es"
                             }
                             AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(localeTag))

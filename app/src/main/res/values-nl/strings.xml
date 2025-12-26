@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">PriceSmart</string>
+    <string name="screen_compare">Vergelijken</string>
+    <string name="screen_add">Toevoegen</string>
+    <string name="screen_settings">Instellingen</string>
+    <string name="screen_edit">Bewerken</string>
+    
+    <string name="settings_appearance">Uiterlijk</string>
+    <string name="settings_dark_mode">Donkere modus</string>
+    <string name="settings_dark_mode_desc">Gebruik donkere kleuren in de interface</string>
+    <string name="settings_language">Taal</string>
+    <string name="settings_language_desc">Selecteer de app-taal</string>
+    <string name="settings_theme">Systeemthema</string>
+    <string name="settings_theme_system">Systeem volgen</string>
+    <string name="settings_theme_light">Licht</string>
+    <string name="settings_theme_dark">Donker</string>
+    <string name="settings_version">Versie %s</string>
+    
+    <string name="compare_empty_title">Vergelijk producten slim</string>
+    <string name="compare_empty_desc">Voeg producten toe om te ontdekken welke de beste prijs per eenheid biedt</string>
+    <string name="compare_add_first">Voeg eerste product toe</string>
+    <string name="compare_products_count">%d producten</string>
+    <string name="compare_ordered_by">Gesorteerd op beste prijs</string>
+    <string name="compare_best_option">BESTE OPTIE</string>
+    <string name="compare_edit_product">Product bewerken</string>
+    <string name="compare_delete_product">Product verwijderen</string>
+    <string name="compare_price_per">Prijs per %s</string>
+    <string name="compare_more_expensive">%d%% duurder dan de beste optie</string>
+    
+    <string name="add_product_title">Product toevoegen</string>
+    <string name="edit_product_title">Product bewerken</string>
+    <string name="product_data_desc">Vul de gegevens in om de werkelijke prijs te vergelijken</string>
+    <string name="product_name">Productnaam</string>
+    <string name="product_name_placeholder">bijv: Tomatensaus</string>
+    <string name="product_price">Totaalprijs (€)</string>
+    <string name="product_units_per_package">Eenheden per pakket</string>
+    <string name="product_units_placeholder">bijv: 3 (blikken)</string>
+    <string name="product_quantity_per_unit">Hoeveelh. per eenheid</string>
+    <string name="product_quantity_placeholder">bijv: 250</string>
+    <string name="product_unit_label">Eenheid</string>
+    <string name="product_calculation_title">Automatische berekening</string>
+    <string name="product_total_label">Totaal</string>
+    <string name="product_save_changes">WIJZIGINGEN OPSLAAN</string>
+    <string name="product_add_button">PRODUCT TOEVOEGEN</string>
+    <string name="product_placeholder_name">Product</string>
+    
+    <string name="unit_kg">kg</string>
+    <string name="unit_g">g</string>
+    <string name="unit_l">l</string>
+    <string name="unit_ml">ml</string>
+    <string name="unit_units">stuks</string>
+    <string name="unit_pack">pack</string>
+    <string name="unit_box">doos</string>
+</resources>

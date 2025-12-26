@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">PriceSmart</string>
+    <string name="screen_compare">比较</string>
+    <string name="screen_add">添加</string>
+    <string name="screen_settings">设置</string>
+    <string name="screen_edit">编辑</string>
+    
+    <string name="settings_appearance">外观</string>
+    <string name="settings_dark_mode">深夜模式</string>
+    <string name="settings_dark_mode_desc">在界面中使用深色</string>
+    <string name="settings_language">语言</string>
+    <string name="settings_language_desc">选择应用语言</string>
+    <string name="settings_theme">系统主题</string>
+    <string name="settings_theme_system">跟随系统</string>
+    <string name="settings_theme_light">浅色模式</string>
+    <string name="settings_theme_dark">深色模式</string>
+    <string name="settings_version">版本 %s</string>
+    
+    <string name="compare_empty_title">智能比较产品</string>
+    <string name="compare_empty_desc">添加产品以发现哪种产品提供最佳单位价格</string>
+    <string name="compare_add_first">添加第一个产品</string>
+    <string name="compare_products_count">%d 个产品</string>
+    <string name="compare_ordered_by">按最佳价格排序</string>
+    <string name="compare_best_option">最佳选择</string>
+    <string name="compare_edit_product">编辑产品</string>
+    <string name="compare_delete_product">删除产品</string>
+    <string name="compare_price_per">每 %s 的价格</string>
+    <string name="compare_more_expensive">比最佳选择贵 %d%%</string>
+    
+    <string name="add_product_title">添加产品</string>
+    <string name="edit_product_title">编辑产品</string>
+    <string name="product_data_desc">填写数据以比较实际价格</string>
+    <string name="product_name">产品名称</string>
+    <string name="product_name_placeholder">例如：番茄酱</string>
+    <string name="product_price">总价 (€)</string>
+    <string name="product_units_per_package">每包单位数</string>
+    <string name="product_units_placeholder">例如：3（罐）</string>
+    <string name="product_quantity_per_unit">每单位数量</string>
+    <string name="product_quantity_placeholder">例如：250</string>
+    <string name="product_unit_label">单位</string>
+    <string name="product_calculation_title">自动计算</string>
+    <string name="product_total_label">总计</string>
+    <string name="product_save_changes">保存更改</string>
+    <string name="product_add_button">添加产品</string>
+    <string name="product_placeholder_name">产品</string>
+    
+    <string name="unit_kg">kg</string>
+    <string name="unit_g">g</string>
+    <string name="unit_l">l</string>
+    <string name="unit_ml">ml</string>
+    <string name="unit_units">单位</string>
+    <string name="unit_pack">包</string>
+    <string name="unit_box">箱</string>
+</resources>

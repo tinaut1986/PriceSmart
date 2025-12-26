@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">PriceSmart</string>
+    <string name="screen_compare">Comparer</string>
+    <string name="screen_add">Ajouter</string>
+    <string name="screen_settings">Paramètres</string>
+    <string name="screen_edit">Modifier</string>
+    
+    <string name="settings_appearance">Apparence</string>
+    <string name="settings_dark_mode">Mode Sombre</string>
+    <string name="settings_dark_mode_desc">Utiliser des couleurs sombres dans l\'interface</string>
+    <string name="settings_language">Langue</string>
+    <string name="settings_language_desc">Choisir la langue de l\'application</string>
+    <string name="settings_theme">Thème du système</string>
+    <string name="settings_theme_system">Suivre le système</string>
+    <string name="settings_theme_light">Clair</string>
+    <string name="settings_theme_dark">Sombre</string>
+    <string name="settings_version">Version %s</string>
+    
+    <string name="compare_empty_title">Comparez vos produits intelligemment</string>
+    <string name="compare_empty_desc">Ajoutez des produits pour découvrir lequel offre le meilleur prix par unité</string>
+    <string name="compare_add_first">Ajouter le premier produit</string>
+    <string name="compare_products_count">%d produits</string>
+    <string name="compare_ordered_by">Trié par meilleur prix</string>
+    <string name="compare_best_option">MEILLEURE OPTION</string>
+    <string name="compare_edit_product">Modifier le produit</string>
+    <string name="compare_delete_product">Supprimer le produit</string>
+    <string name="compare_price_per">Prix par %s</string>
+    <string name="compare_more_expensive">%d%% plus cher que la meilleure option</string>
+    
+    <string name="add_product_title">Ajouter un produit</string>
+    <string name="edit_product_title">Modifier le produit</string>
+    <string name="product_data_desc">Complétez les données pour comparer le prix réel</string>
+    <string name="product_name">Nom du produit</string>
+    <string name="product_name_placeholder">ex: Tomates pelées</string>
+    <string name="product_price">Prix total (€)</string>
+    <string name="product_units_per_package">Unités par paquet</string>
+    <string name="product_units_placeholder">ex: 3 (boîtes)</string>
+    <string name="product_quantity_per_unit">Quantité par unité</string>
+    <string name="product_quantity_placeholder">ex: 250</string>
+    <string name="product_unit_label">Unité</string>
+    <string name="product_calculation_title">Calcul automatique</string>
+    <string name="product_total_label">Total</string>
+    <string name="product_save_changes">ENREGISTRER LES MODIFICATIONS</string>
+    <string name="product_add_button">AJOUTER LE PRODUIT</string>
+    <string name="product_placeholder_name">Produit</string>
+    
+    <string name="unit_kg">kg</string>
+    <string name="unit_g">g</string>
+    <string name="unit_l">l</string>
+    <string name="unit_ml">ml</string>
+    <string name="unit_units">unités</string>
+    <string name="unit_pack">pack</string>
+    <string name="unit_box">boîte</string>
+</resources>
