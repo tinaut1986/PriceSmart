@@ -65,7 +65,7 @@ fun SettingsScreen(
         Spacer(modifier = Modifier.weight(1f))
         
         Text(
-            stringResource(R.string.settings_version, "1.0.0"),
+            stringResource(R.string.settings_version, "1.0.1"),
             style = MaterialTheme.typography.labelSmall,
             color = Color.Gray,
             modifier = Modifier.align(Alignment.CenterHorizontally)
