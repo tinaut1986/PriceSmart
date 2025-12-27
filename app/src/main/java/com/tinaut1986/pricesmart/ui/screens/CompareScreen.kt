@@ -1,4 +1,4 @@
-package com.example.testapplication.ui.screens
+package com.tinaut1986.pricesmart.ui.screens
 
 import java.util.Locale
 import androidx.compose.foundation.BorderStroke
@@ -16,12 +16,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import com.example.testapplication.R
+import com.tinaut1986.pricesmart.R
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import com.example.testapplication.model.Product
-import com.example.testapplication.model.OfferType
+import com.tinaut1986.pricesmart.model.Product
+import com.tinaut1986.pricesmart.model.OfferType
 import kotlin.math.roundToInt
 
 @Composable

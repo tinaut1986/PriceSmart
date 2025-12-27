@@ -1,4 +1,4 @@
-package com.example.testapplication.ui.theme
+package com.tinaut1986.pricesmart.ui.theme
 
 import androidx.compose.ui.graphics.Color
 

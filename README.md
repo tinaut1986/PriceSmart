@@ -1,37 +1,40 @@
 # PriceSmart 🛒
 
-**PriceSmart** es una potente utilidad para Android diseñada para ayudarte a ahorrar dinero en tus compras diarias mediante la comparación inteligente de precios. No te dejes engañar por los precios por paquete; compara siempre el valor real por unidad de medida.
+**PriceSmart** es una utilidad para Android diseñada para comparar precios de productos basándose en su valor por unidad de medida. Permite calcular el ahorro real en compras diarias, especialmente cuando los envases tienen diferentes tamaños o incluyen ofertas complejas.
 
-## ✨ Características principales
+## ✨ Funcionalidades
 
-- 📊 **Comparación en tiempo real**: Calcula automáticamente el precio por unidad base (kg, litro, unidad, etc.) para descubrir qué opción es realmente la más económica.
-- 🏷️ **Gestión de Ofertas Complejas**:
-  - **Lleva X y Paga Y** (ej: 3x2, 2x1): Calcula el ahorro real al comprar varias unidades.
-  - **Nª unidad al -X%**: Configura promociones de unidades sucesivas (ej: 2ª unidad al 70%, 3ª al 50%).
-  - **Lotes a precio fijo**: Calcula el precio unitario en ofertas tipo "3 unidades por 5€".
-  - **Cantidad extra gratis**: Ajusta el cálculo si el envase trae un +10% o +20% de producto adicional gratuito.
+- 📊 **Cálculo por unidad base**: Determina automáticamente el precio por kg, litro o unidad.
+- 🏷️ **Gestión de Ofertas**:
+  - **Lleva X y Paga Y** (3x2, 2x1, etc.).
+  - **Descuento en unidades sucesivas** (ej: 2ª unidad al 70%).
+  - **Lotes a precio fijo** (ej: 3 unidades por 5€).
+  - **Cantidad extra gratis** (ajuste por porcentaje adicional gratuito).
 - 📉 **Análisis de Ahorro**:
-  - Muestra el **precio original tachado** para una comparativa visual directa.
-  - Indica el **porcentaje de ahorro real** conseguido con la oferta activa.
-  - Avisa de cuánto más caro es un producto respecto a la mejor opción de la lista.
-- 🌐 **Soporte Global (Multi-idioma)**: Localización completa en 11 idiomas:
-  - Español, Inglés, Catalán, Francés, Portugués, Alemán, Vasco, Gallego, Japonés, Holandés y Chino.
-- 🌑 **Diseño Premium**: Interfaz moderna basada en Material 3 con soporte completo para **Modo Oscuro**.
+  - Visualización del precio original y descuento aplicado.
+  - Indicador del porcentaje de ahorro real.
+  - Comparativa porcentual entre productos de la lista.
+- 🌐 **Idiomas**: Localización en 11 idiomas (Español, Inglés, Catalán, Francés, Portugués, Alemán, Vasco, Gallego, Japonés, Holandés y Chino).
+- 🌑 **Interfaz**: Soporte para modo oscuro y diseño basado en Material 3.
 
-## 🛠️ Tecnologías utilizadas
+## 🛠️ Tecnologías
 
-- **Kotlin**: Lenguaje principal de desarrollo.
-- **Jetpack Compose**: Interfaz de usuario declarativa moderna.
-- **Material 3**: Sistema de diseño de Google para una experiencia premium.
-- **Navigation Compose**: Navegación fluida entre pantallas.
-- **MVVM Architecture**: Estructura de código limpia y mantenible.
+- **Kotlin**: Lenguaje de programación.
+- **Jetpack Compose**: Kit de herramientas para la interfaz de usuario.
+- **Material 3**: Sistema de diseño.
+- **Navigation Compose**: Gestión de navegación.
+- **Arquitectura MVVM**: Organización del código para facilitar su mantenimiento.
 
 ## 🚀 Cómo empezar
 
+### Para Usuarios
+- Puedes descargar la última versión estable (APK) directamente desde la sección de **[Releases](https://github.com/tinaut1986/PriceSmart/releases)** de este repositorio.
+
+### Para Desarrolladores
 1. Clona este repositorio.
-2. Ábrelo con **Android Studio (Ladybug o superior)**.
-3. Compila y ejecuta en tu dispositivo o emulador.
+2. Ábrelo con **Android Studio (Ladybug 2024.2.1 o superior)**.
+3. Compila y ejecuta en un dispositivo con Android 5.0 (API 21) o superior.
 
 ---
 
-Desarrollado con ❤️ para ahorrar en el carrito de la compra.
+Desarrollado con ❤️ por **tinaut1986** para ahorrar en el carrito de la compra.

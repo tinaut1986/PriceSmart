@@ -1,4 +1,4 @@
-package com.example.testapplication
+package com.tinaut1986.pricesmart
 
 import org.junit.Test
 

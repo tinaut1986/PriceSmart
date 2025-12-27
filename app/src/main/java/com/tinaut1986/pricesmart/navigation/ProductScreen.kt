@@ -1,7 +1,7 @@
-package com.example.testapplication.navigation
+package com.tinaut1986.pricesmart.navigation
 
 import androidx.annotation.StringRes
-import com.example.testapplication.R
+import com.tinaut1986.pricesmart.R
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle

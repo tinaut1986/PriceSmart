@@ -1,4 +1,4 @@
-package com.example.testapplication.model
+package com.tinaut1986.pricesmart.model
 
 import android.os.Parcelable
 import kotlinx.parcelize.Parcelize

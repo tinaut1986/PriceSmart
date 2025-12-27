@@ -6,13 +6,13 @@ plugins {
 }
 
 android {
-    namespace = "com.example.testapplication"
+    namespace = "com.tinaut1986.pricesmart"
     compileSdk {
         version = release(36)
     }
 
     defaultConfig {
-        applicationId = "com.example.testapplication"
+        applicationId = "com.tinaut1986.pricesmart"
         minSdk = 21
         targetSdk = 36
         versionCode = 1

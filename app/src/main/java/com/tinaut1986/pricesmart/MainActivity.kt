@@ -1,4 +1,4 @@
-package com.example.testapplication
+package com.tinaut1986.pricesmart
 
 import android.os.Bundle
 import androidx.activity.compose.setContent
@@ -19,12 +19,12 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
-import com.example.testapplication.model.Product
-import com.example.testapplication.navigation.ProductScreen
-import com.example.testapplication.ui.screens.AddEditProductScreen
-import com.example.testapplication.ui.screens.CompareScreen
-import com.example.testapplication.ui.screens.SettingsScreen
-import com.example.testapplication.ui.theme.TestApplicationTheme
+import com.tinaut1986.pricesmart.model.Product
+import com.tinaut1986.pricesmart.navigation.ProductScreen
+import com.tinaut1986.pricesmart.ui.screens.AddEditProductScreen
+import com.tinaut1986.pricesmart.ui.screens.CompareScreen
+import com.tinaut1986.pricesmart.ui.screens.SettingsScreen
+import com.tinaut1986.pricesmart.ui.theme.PriceSmartTheme
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.isSystemInDarkTheme
 
@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            TestApplicationTheme {
+            PriceSmartTheme {
                 PriceComparatorApp()
             }
         }
@@ -80,7 +80,7 @@ fun PriceComparatorApp() {
         )
     }
 
-    TestApplicationTheme(darkTheme = isDarkMode) {
+    PriceSmartTheme(darkTheme = isDarkMode) {
         Scaffold(
             topBar = {
                 TopAppBar(

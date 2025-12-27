@@ -1,4 +1,4 @@
-package com.example.testapplication.ui.screens
+package com.tinaut1986.pricesmart.ui.screens
 
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -14,8 +14,8 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
-import com.example.testapplication.R
-import com.example.testapplication.ThemeMode
+import com.tinaut1986.pricesmart.R
+import com.tinaut1986.pricesmart.ThemeMode
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.text.font.FontWeight
@@ -65,7 +65,7 @@ fun SettingsScreen(
         Spacer(modifier = Modifier.weight(1f))
         
         Text(
-            stringResource(R.string.settings_version, "1.0.1"),
+            stringResource(R.string.settings_version, "1.0.2"),
             style = MaterialTheme.typography.labelSmall,
             color = Color.Gray,
             modifier = Modifier.align(Alignment.CenterHorizontally)
