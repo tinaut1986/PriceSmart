@@ -27,6 +27,7 @@ import com.tinaut1986.pricesmart.ui.screens.SettingsScreen
 import com.tinaut1986.pricesmart.ui.theme.PriceSmartTheme
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.icons.filled.Add
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -195,6 +196,11 @@ fun PriceComparatorApp() {
                             navController.navigate(ProductScreen.Compare.route) {
                                 popUpTo(ProductScreen.Compare.route) { inclusive = true }
                             }
+                        },
+                        onTutorialFinish = {
+                            navController.navigate(ProductScreen.Compare.route) {
+                                popUpTo(ProductScreen.Compare.route) { inclusive = true }
+                            }
                         }
                     ) 
                 }
@@ -220,6 +226,13 @@ fun PriceComparatorApp() {
                                 else -> "es"
                             }
                             AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(localeTag))
+                        },
+                        onNavigateToAdd = {
+                            navController.navigate(ProductScreen.Add.route) {
+                                popUpTo(ProductScreen.Settings.route) {
+                                    inclusive = true
+                                }
+                            }
                         }
                     )
                 }
@@ -236,6 +249,11 @@ fun PriceComparatorApp() {
                                     products[index] = updatedProduct
                                 }
                                 navController.popBackStack()
+                            },
+                            onTutorialFinish = {
+                                navController.navigate(ProductScreen.Compare.route) {
+                                    popUpTo(ProductScreen.Compare.route) { inclusive = true }
+                                }
                             }
                         )
                     }

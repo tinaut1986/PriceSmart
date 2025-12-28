@@ -76,4 +76,42 @@
     <string name="offer_value_fixed_qty">Unitate kantitatea</string>
     <string name="offer_value_fixed_price">Multzoaren prezio osoa</string>
     <string name="offer_value_extra_qty">Gehigarria (%)</string>
+    <string name="delete_confirm_title">Produktua ezabatu?</string>
+    <string name="delete_confirm_message">Ziur zaude \"%s\" ezabatu nahi duzula? Ekintza hau ezin da desegin.</string>
+    <string name="delete_confirm_button">Ezabatu</string>
+    <string name="delete_cancel_button">Utzi</string>
+
+    <string name="product_show_extra">Ikusi aukera gehigarriak</string>
+    <string name="product_hide_extra">Ezkutatu aukera gehigarriak</string>
+
+    <string name="tutorial_skip">Omisitu</string>
+    <string name="tutorial_next">Hurrengoa</string>
+    <string name="tutorial_finish">Ulertuta</string>
+    <string name="tutorial_dont_show_again">Ez erakutsi berriro</string>
+
+    <string name="tutorial_step_name_title">Produktuaren izena</string>
+    <string name="tutorial_step_name_desc">Eman izen bat erraz identifikatzeko (aukerakoa).</string>
+    <string name="tutorial_step_price_title">Prezioa</string>
+    <string name="tutorial_step_price_desc">Sartu etiketan agertzen den prezio osoa.</string>
+    <string name="tutorial_step_qty_title">Kantitatea</string>
+    <string name="tutorial_step_qty_desc">Adierazi produktuaren pisua edo bolumena (adib: 500, 500g-rako).</string>
+    <string name="tutorial_step_unit_title">Unitatea</string>
+    <string name="tutorial_step_unit_desc">Hautatu neurri-unitatea oinarrizko prezioa kalkulatzeko.</string>
+    <string name="tutorial_step_extra_title">Pack unitateak</string>
+    <string name="tutorial_step_extra_desc">Pack bat bada, adierazi zenbat unitate dituen (adib: 6 latako pack-a).</string>
+    <string name="tutorial_step_offers_title">Eskaintzak</string>
+    <string name="tutorial_step_offers_desc">Konfiguratu deskontuak, 3x2, bigarren unitatea eta gehiago benetako aurrezpena alderatzeko.</string>
+
+    <string name="settings_tutorial">Tutoriala</string>
+    <string name="settings_reset_tutorial">Ikusi tutoriala</string>
+    <string name="settings_reset_tutorial_desc">Produktua gehitzeko pantailara eramango zaitu laguntza-burbuilekin</string>
+
+    <string name="tutorial_compare_welcome_title">Alderatu eta aurreztu!</string>
+    <string name="tutorial_compare_welcome_desc">Hemen zure produktuak automatikoki ordenatuta ikusiko dituzu, merkeena zein den beti jakiteko.</string>
+    <string name="tutorial_compare_best_title">Aukerarik onena</string>
+    <string name="tutorial_compare_best_desc">Unitate bakoitzeko preziorik baxuena duen produktua automatikoki nabarmentzen da bereizgarri honekin.</string>
+    <string name="tutorial_compare_diff_title">Prezio aldea</string>
+    <string name="tutorial_compare_diff_desc">Produktu bat onena baino zenbat garestiagoa den ehuneko zehatza erakusten dizugu.</string>
+    <string name="tutorial_compare_actions_title">Kudeaketa</string>
+    <string name="tutorial_compare_actions_desc">Produktuak edozein unetan editatu edo ezabatu ditzakezu txarteleko ikonoak erabiliz.</string>
 </resources>

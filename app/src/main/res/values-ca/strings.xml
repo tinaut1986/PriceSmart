@@ -76,4 +76,42 @@
     <string name="offer_value_fixed_qty">Quantitat d’unitats</string>
     <string name="offer_value_fixed_price">Preu total del lot</string>
     <string name="offer_value_extra_qty">Extra (%)</string>
+    <string name="delete_confirm_title">Eliminar producte?</string>
+    <string name="delete_confirm_message">Estàs segur que vols eliminar \"%s\"? Aquesta acció no es pot desfer.</string>
+    <string name="delete_confirm_button">Eliminar</string>
+    <string name="delete_cancel_button">Cancel·lar</string>
+
+    <string name="product_show_extra">Veure opcions extra</string>
+    <string name="product_hide_extra">Amagar opcions extra</string>
+
+    <string name="tutorial_skip">Ometre</string>
+    <string name="tutorial_next">Següent</string>
+    <string name="tutorial_finish">Entès</string>
+    <string name="tutorial_dont_show_again">No tornar a mostrar</string>
+
+    <string name="tutorial_step_name_title">Nom del producte</string>
+    <string name="tutorial_step_name_desc">Posa-li un nom per identificar-lo fàcilment (opcional).</string>
+    <string name="tutorial_step_price_title">Preu</string>
+    <string name="tutorial_step_price_desc">Introdueix el preu total que marca l\'etiqueta.</string>
+    <string name="tutorial_step_qty_title">Quantitat</string>
+    <string name="tutorial_step_qty_desc">Indica el pes o volum del producte (ex: 500 per a 500g).</string>
+    <string name="tutorial_step_unit_title">Unitat</string>
+    <string name="tutorial_step_unit_desc">Selecciona la unitat de mesura per calcular el preu base.</string>
+    <string name="tutorial_step_extra_title">Unitats pack</string>
+    <string name="tutorial_step_extra_desc">Si és un pack, indica quantes unitats porta (ex: pack de 6 lates).</string>
+    <string name="tutorial_step_offers_title">Ofertes</string>
+    <string name="tutorial_step_offers_desc">Configura descomptes, 3x2, segona unitat i més per comparar l\'estalvi real.</string>
+
+    <string name="settings_tutorial">Tutorial</string>
+    <string name="settings_reset_tutorial">Veure tutorial</string>
+    <string name="settings_reset_tutorial_desc">Et portarà a la pantalla d\'afegir producte amb les bombolles d\'ajuda</string>
+
+    <string name="tutorial_compare_welcome_title">Compara i estalvia!</string>
+    <string name="tutorial_compare_welcome_desc">Aquí veuràs els teus productes ordenats automàticament perquè sempre sàpigues quin és el més barat.</string>
+    <string name="tutorial_compare_best_title">Millor opció</string>
+    <string name="tutorial_compare_best_desc">El producte amb el preu més baix per unitat es ressalta automàticament amb aquest distintiu.</string>
+    <string name="tutorial_compare_diff_title">Diferència de preu</string>
+    <string name="tutorial_compare_diff_desc">Et mostrem el percentatge exacte de quant més car és un producte respecte al millor.</string>
+    <string name="tutorial_compare_actions_title">Gestió</string>
+    <string name="tutorial_compare_actions_desc">Pots editar o eliminar productes en qualsevol moment usant les icones de la targeta.</string>
 </resources>

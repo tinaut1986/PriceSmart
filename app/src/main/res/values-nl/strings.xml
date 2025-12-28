@@ -76,4 +76,42 @@
     <string name="offer_value_fixed_qty">Aantal eenheden</string>
     <string name="offer_value_fixed_price">Totale pakketprijs</string>
     <string name="offer_value_extra_qty">Extra (%)</string>
+    <string name="delete_confirm_title">Product verwijderen?</string>
+    <string name="delete_confirm_message">Weet je zeker dat je \"%s\" wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.</string>
+    <string name="delete_confirm_button">Verwijderen</string>
+    <string name="delete_cancel_button">Annuleren</string>
+
+    <string name="product_show_extra">Toon extra opties</string>
+    <string name="product_hide_extra">Verberg extra opties</string>
+
+    <string name="tutorial_skip">Overslaan</string>
+    <string name="tutorial_next">Volgende</string>
+    <string name="tutorial_finish">Begrepen</string>
+    <string name="tutorial_dont_show_again">Niet meer tonen</string>
+
+    <string name="tutorial_step_name_title">Productnaam</string>
+    <string name="tutorial_step_name_desc">Geef het een naam om het makkelijk te herkennen (optioneel).</string>
+    <string name="tutorial_step_price_title">Prijs</string>
+    <string name="tutorial_step_price_desc">Voer de totaalprijs in zoals vermeld op het etiket.</string>
+    <string name="tutorial_step_qty_title">Hoeveelheid</string>
+    <string name="tutorial_step_qty_desc">Geef het gewicht of volume aan (bijv: 500 voor 500g).</string>
+    <string name="tutorial_step_unit_title">Eenheid</string>
+    <string name="tutorial_step_unit_desc">Selecteer de maateenheid om de basisprijs te berekenen.</string>
+    <string name="tutorial_step_extra_title">Verpakkingseenheden</string>
+    <string name="tutorial_step_extra_desc">Als het een pack is, geef dan aan hoeveel eenheden het bevat (bijv: pack van 6 blikjes).</string>
+    <string name="tutorial_step_offers_title">Aanbiedingen</string>
+    <string name="tutorial_step_offers_desc">Stel kortingen, 3x2, tweede eenheid en meer in om echte besparingen te vergelijken.</string>
+
+    <string name="settings_tutorial">Handleiding</string>
+    <string name="settings_reset_tutorial">Handleiding bekijken</string>
+    <string name="settings_reset_tutorial_desc">Brengt je naar het toevoegscherm met hulpbubbels</string>
+
+    <string name="tutorial_compare_welcome_title">Vergelijk en Bespaar!</string>
+    <string name="tutorial_compare_welcome_desc">Hier ziet u uw producten automatisch gerangschikt zodat u altijd weet welke de goedkoopste is.</string>
+    <string name="tutorial_compare_best_title">Beste optie</string>
+    <string name="tutorial_compare_best_desc">Het product met de laagste prijs per eenheid wordt automatisch gemarkeerd met deze badge.</string>
+    <string name="tutorial_compare_diff_title">Prijsverschil</string>
+    <string name="tutorial_compare_diff_desc">We tonen u het exacte percentage van hoeveel duurder een product is in vergelijking met de beste.</string>
+    <string name="tutorial_compare_actions_title">Beheer</string>
+    <string name="tutorial_compare_actions_desc">U kunt producten op elk gewenst moment bewerken of verwijderen via de pictogrammen op de kaart.</string>
 </resources>
