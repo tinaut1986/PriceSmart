@@ -27,6 +27,7 @@ import com.tinaut1986.pricesmart.ui.screens.SettingsScreen
 import com.tinaut1986.pricesmart.ui.theme.PriceSmartTheme
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.icons.filled.Add
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -62,7 +63,13 @@ fun PriceComparatorApp() {
     val languageState = rememberSaveable { 
         mutableStateOf(
             run {
-                val currentLocale = AppCompatDelegate.getApplicationLocales().get(0)
+                val appLocales = AppCompatDelegate.getApplicationLocales()
+                val currentLocale = if (!appLocales.isEmpty) {
+                    appLocales.get(0)
+                } else {
+                    java.util.Locale.getDefault()
+                }
+
                 when (currentLocale?.language) {
                     "en" -> "English"
                     "ca" -> "Català"
@@ -74,6 +81,7 @@ fun PriceComparatorApp() {
                     "nl" -> "Nederlands"
                     "zh" -> "中文"
                     "ja" -> "日本語"
+                    "es" -> "Español"
                     else -> "Español"
                 }
             }       
@@ -81,6 +89,9 @@ fun PriceComparatorApp() {
     }
 
     PriceSmartTheme(darkTheme = isDarkMode) {
+        val navBackStackEntry by navController.currentBackStackEntryAsState()
+        val currentRoute = navBackStackEntry?.destination?.route
+
         Scaffold(
             topBar = {
                 TopAppBar(
@@ -101,10 +112,7 @@ fun PriceComparatorApp() {
                 NavigationBar(
                     containerColor = if (isDarkMode) Color(0xFF1A1A1A) else Color(0xFFF5F5F5)
                 ) {
-                    val navBackStackEntry by navController.currentBackStackEntryAsState()
-                    val currentRoute = navBackStackEntry?.destination?.route
-                    
-                    listOf(ProductScreen.Compare, ProductScreen.Add, ProductScreen.Settings).forEach { screen ->
+                    listOf(ProductScreen.Compare, ProductScreen.Settings).forEach { screen ->
                         NavigationBarItem(
                             icon = { 
                                 Icon(
@@ -129,6 +137,29 @@ fun PriceComparatorApp() {
                                     restoreState = true
                                 }
                             }
+                        )
+                    }
+                }
+            },
+            floatingActionButton = {
+                if (currentRoute == ProductScreen.Compare.route) {
+                    FloatingActionButton(
+                        onClick = {
+                            navController.navigate(ProductScreen.Add.route) {
+                                popUpTo(navController.graph.findStartDestination().id) {
+                                    saveState = true
+                                }
+                                launchSingleTop = true
+                                restoreState = true
+                            }
+                        },
+                        containerColor = Color(0xFF2E7D32),
+                        contentColor = Color.White,
+                        shape = androidx.compose.foundation.shape.CircleShape
+                    ) {
+                        Icon(
+                            imageVector = androidx.compose.material.icons.Icons.Default.Add,
+                            contentDescription = stringResource(R.string.add_product_title)
                         )
                     }
                 }
@@ -165,6 +196,11 @@ fun PriceComparatorApp() {
                             navController.navigate(ProductScreen.Compare.route) {
                                 popUpTo(ProductScreen.Compare.route) { inclusive = true }
                             }
+                        },
+                        onTutorialFinish = {
+                            navController.navigate(ProductScreen.Compare.route) {
+                                popUpTo(ProductScreen.Compare.route) { inclusive = true }
+                            }
                         }
                     ) 
                 }
@@ -190,6 +226,13 @@ fun PriceComparatorApp() {
                                 else -> "es"
                             }
                             AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(localeTag))
+                        },
+                        onNavigateToAdd = {
+                            navController.navigate(ProductScreen.Add.route) {
+                                popUpTo(ProductScreen.Settings.route) {
+                                    inclusive = true
+                                }
+                            }
                         }
                     )
                 }
@@ -206,6 +249,11 @@ fun PriceComparatorApp() {
                                     products[index] = updatedProduct
                                 }
                                 navController.popBackStack()
+                            },
+                            onTutorialFinish = {
+                                navController.navigate(ProductScreen.Compare.route) {
+                                    popUpTo(ProductScreen.Compare.route) { inclusive = true }
+                                }
                             }
                         )
                     }

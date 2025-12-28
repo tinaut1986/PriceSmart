@@ -75,4 +75,45 @@
     <string name="offer_value_fixed_qty">Cantidad de unidades</string>
     <string name="offer_value_fixed_price">Precio total del lote</string>
     <string name="offer_value_extra_qty">Extra (%)</string>
+
+    <string name="delete_confirm_title">¿Eliminar producto?</string>
+    <string name="delete_confirm_message">¿Estás seguro de que quieres eliminar \"%s\"? Esta acción no se puede deshacer.</string>
+    <string name="delete_confirm_button">Eliminar</string>
+    <string name="delete_cancel_button">Cancelar</string>
+
+    <string name="product_show_extra">Ver opciones extra</string>
+    <string name="product_hide_extra">Ocultar opciones extra</string>
+
+    <string name="tutorial_skip">Omitir</string>
+    <string name="tutorial_next">Siguiente</string>
+    <string name="tutorial_finish">Entendido</string>
+    <string name="tutorial_dont_show_again">No volver a mostrar</string>
+
+    <string name="tutorial_step_name_title">Nombre del producto</string>
+    <string name="tutorial_step_name_desc">Ponle un nombre para identificarlo rápidamente (opcional).</string>
+    <string name="tutorial_step_price_title">Precio</string>
+    <string name="tutorial_step_price_desc">Introduce el precio total que marca la etiqueta.</string>
+    <string name="tutorial_step_qty_title">Cantidad</string>
+    <string name="tutorial_step_qty_desc">Indica el peso o volumen del producto (ej: 500 para 500g).</string>
+    <string name="tutorial_step_unit_title">Unidad</string>
+    <string name="tutorial_step_unit_desc">Selecciona la unidad de medida para calcular el precio base.</string>
+    <string name="tutorial_step_extra_title">Unidades pack</string>
+    <string name="tutorial_step_extra_desc">Si es un pack, indica cuántas unidades trae (ej: pack de 6 latas).</string>
+    <string name="tutorial_step_toggle_title">Opciones avanzadas</string>
+    <string name="tutorial_step_toggle_desc">Pulsa aquí para ver más opciones como packs u ofertas.</string>
+    <string name="tutorial_step_offers_title">Ofertas</string>
+    <string name="tutorial_step_offers_desc">Configura descuentos, 3x2, segunda unidad y más para comparar el ahorro real.</string>
+
+    <string name="settings_tutorial">Tutorial</string>
+    <string name="settings_reset_tutorial">Ver tutorial</string>
+    <string name="settings_reset_tutorial_desc">Te llevará a la pantalla de añadir producto con las burbujas de ayuda</string>
+
+    <string name="tutorial_compare_welcome_title">¡Compara y ahorra!</string>
+    <string name="tutorial_compare_welcome_desc">Aquí verás tus productos ordenados automáticamente para que siempre sepas cuál es el más barato.</string>
+    <string name="tutorial_compare_best_title">Mejor opción</string>
+    <string name="tutorial_compare_best_desc">El producto con el precio más bajo por unidad se resalta automáticamente con este distintivo.</string>
+    <string name="tutorial_compare_diff_title">Diferencia de precio</string>
+    <string name="tutorial_compare_diff_desc">Te mostramos el porcentaje exacto de cuánto más caro es un producto respecto al mejor.</string>
+    <string name="tutorial_compare_actions_title">Gestión</string>
+    <string name="tutorial_compare_actions_desc">Puedes editar o eliminar productos en cualquier momento usando los iconos de la tarjeta.</string>
 </resources>

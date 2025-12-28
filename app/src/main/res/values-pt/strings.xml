@@ -76,4 +76,42 @@
     <string name="offer_value_fixed_qty">Quantidade de unidades</string>
     <string name="offer_value_fixed_price">Preço total do lote</string>
     <string name="offer_value_extra_qty">Extra (%)</string>
+    <string name="delete_confirm_title">Apagar produto?</string>
+    <string name="delete_confirm_message">Tem a certeza que deseja apagar \"%s\"? Esta ação não pode ser desfeita.</string>
+    <string name="delete_confirm_button">Apagar</string>
+    <string name="delete_cancel_button">Cancelar</string>
+
+    <string name="product_show_extra">Ver opções extra</string>
+    <string name="product_hide_extra">Ocultar opções extra</string>
+
+    <string name="tutorial_skip">Ignorar</string>
+    <string name="tutorial_next">Seguinte</string>
+    <string name="tutorial_finish">Entendido</string>
+    <string name="tutorial_dont_show_again">Não mostrar novamente</string>
+
+    <string name="tutorial_step_name_title">Nome do produto</string>
+    <string name="tutorial_step_name_desc">Introduza um nome para o identificar facilmente (opcional).</string>
+    <string name="tutorial_step_price_title">Preço</string>
+    <string name="tutorial_step_price_desc">Introduza o preço total marcado na etiqueta.</string>
+    <string name="tutorial_step_qty_title">Quantidade</string>
+    <string name="tutorial_step_qty_desc">Indique o peso ou volume do produto (ex: 500 para 500g).</string>
+    <string name="tutorial_step_unit_title">Unidade</string>
+    <string name="tutorial_step_unit_desc">Selecione a unidade de medida para calcular o preço base.</string>
+    <string name="tutorial_step_extra_title">Unidades pack</string>
+    <string name="tutorial_step_extra_desc">Se for um pack, indique quantas unidades traz (ex: pack de 6 latas).</string>
+    <string name="tutorial_step_offers_title">Ofertas</string>
+    <string name="tutorial_step_offers_desc">Configure descontos, 3x2, segunda unidade e mais para comparar a poupança real.</string>
+
+    <string name="settings_tutorial">Tutorial</string>
+    <string name="settings_reset_tutorial">Ver tutorial</string>
+    <string name="settings_reset_tutorial_desc">Irá levá-lo para o ecrã de adicionar produto com bolhas de ajuda</string>
+
+    <string name="tutorial_compare_welcome_title">Compare e poupe!</string>
+    <string name="tutorial_compare_welcome_desc">Aqui verá os seus produtos ordenados automaticamente para saber sempre qual é o mais barato.</string>
+    <string name="tutorial_compare_best_title">Melhor opção</string>
+    <string name="tutorial_compare_best_desc">O produto com o preço unitário mais baixo é automaticamente destacado con este distintivo.</string>
+    <string name="tutorial_compare_diff_title">Diferença de preço</string>
+    <string name="tutorial_compare_diff_desc">Mostramos-lhe a percentagem exata de quanto mais caro um produto é em relação ao melhor.</string>
+    <string name="tutorial_compare_actions_title">Gestão</string>
+    <string name="tutorial_compare_actions_desc">Pode editar ou eliminar produtos a qualquer momento usando os ícones do cartão.</string>
 </resources>

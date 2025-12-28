@@ -76,4 +76,44 @@
     <string name="offer_value_fixed_qty">Quantity of units</string>
     <string name="offer_value_fixed_price">Total pack price</string>
     <string name="offer_value_extra_qty">Extra (%)</string>
+    <string name="delete_confirm_title">Delete product?</string>
+    <string name="delete_confirm_message">Are you sure you want to delete \"%s\"? This action cannot be undone.</string>
+    <string name="delete_confirm_button">Delete</string>
+    <string name="delete_cancel_button">Cancel</string>
+
+    <string name="product_show_extra">Show extra options</string>
+    <string name="product_hide_extra">Hide extra options</string>
+
+    <string name="tutorial_skip">Skip</string>
+    <string name="tutorial_next">Next</string>
+    <string name="tutorial_finish">Understood</string>
+    <string name="tutorial_dont_show_again">Don\'t show again</string>
+
+    <string name="tutorial_step_name_title">Product name</string>
+    <string name="tutorial_step_name_desc">Give it a name to identify it easily (optional).</string>
+    <string name="tutorial_step_price_title">Price</string>
+    <string name="tutorial_step_price_desc">Enter the total price as marked on the label.</string>
+    <string name="tutorial_step_qty_title">Quantity</string>
+    <string name="tutorial_step_qty_desc">Indicate the weight or volume (e.g., 500 for 500g).</string>
+    <string name="tutorial_step_unit_title">Unit</string>
+    <string name="tutorial_step_unit_desc">Select the unit of measurement to calculate base price.</string>
+    <string name="tutorial_step_extra_title">Pack units</string>
+    <string name="tutorial_step_extra_desc">If it\'s a pack, indicate how many units it contains (e.g., pack of 6 cans).</string>
+    <string name="tutorial_step_toggle_title">Advanced options</string>
+    <string name="tutorial_step_toggle_desc">Click here to see more options like packs or offers.</string>
+    <string name="tutorial_step_offers_title">Offers</string>
+    <string name="tutorial_step_offers_desc">Configure discounts, 3x2, second unit and more to compare real savings.</string>
+
+    <string name="settings_tutorial">Tutorial</string>
+    <string name="settings_reset_tutorial">See tutorial</string>
+    <string name="settings_reset_tutorial_desc">It will take you to the add product screen with help bubbles</string>
+
+    <string name="tutorial_compare_welcome_title">Compare and Save!</string>
+    <string name="tutorial_compare_welcome_desc">Here you will see your products automatically ordered so you always know which one is the cheapest.</string>
+    <string name="tutorial_compare_best_title">Best option</string>
+    <string name="tutorial_compare_best_desc">The product with the lowest price per unit is automatically highlighted with this badge.</string>
+    <string name="tutorial_compare_diff_title">Price difference</string>
+    <string name="tutorial_compare_diff_desc">We show you the exact percentage of how much more expensive a product is compared to the best one.</string>
+    <string name="tutorial_compare_actions_title">Management</string>
+    <string name="tutorial_compare_actions_desc">You can edit or delete products at any time using the card icons.</string>
 </resources>

@@ -8,6 +8,7 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.Help
 import androidx.compose.material.icons.filled.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
@@ -27,7 +28,8 @@ fun SettingsScreen(
     onThemeModeChange: (ThemeMode) -> Unit,
     isDarkMode: Boolean,
     currentLanguage: String,
-    onLanguageChange: (String) -> Unit
+    onLanguageChange: (String) -> Unit,
+    onNavigateToAdd: () -> Unit
 ) {
     Column(
         modifier = Modifier
@@ -61,11 +63,45 @@ fun SettingsScreen(
                 onLanguageChange = onLanguageChange
             )
         }
+
+        // Tutorial Section
+        val context = androidx.compose.ui.platform.LocalContext.current
+        SettingsSection(title = stringResource(R.string.settings_tutorial)) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .clickable {
+                        val prefs = context.getSharedPreferences("pricesmart_prefs", android.content.Context.MODE_PRIVATE)
+                        prefs.edit().putBoolean("tutorial_shown", false).apply()
+                        onNavigateToAdd()
+                    }
+                    .padding(12.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.SpaceBetween
+            ) {
+                Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.weight(1f)) {
+                    Icon(Icons.AutoMirrored.Filled.Help, contentDescription = null, tint = Color(0xFF2E7D32))
+                    Spacer(modifier = Modifier.width(16.dp))
+                    Column {
+                        Text(stringResource(R.string.settings_reset_tutorial), style = MaterialTheme.typography.bodyLarge, fontWeight = FontWeight.Bold)
+                        Text(stringResource(R.string.settings_reset_tutorial_desc), style = MaterialTheme.typography.bodySmall, color = Color.Gray)
+                    }
+                }
+                Icon(Icons.Filled.RestartAlt, contentDescription = null, tint = Color(0xFF2E7D32))
+            }
+        }
         
         Spacer(modifier = Modifier.weight(1f))
         
+        val versionName = try {
+            val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
+            packageInfo.versionName ?: "1.0.3"
+        } catch (e: Exception) {
+            "1.0.3"
+        }
+
         Text(
-            stringResource(R.string.settings_version, "1.0.2"),
+            stringResource(R.string.settings_version, versionName ?: "1.0.3"),
             style = MaterialTheme.typography.labelSmall,
             color = Color.Gray,
             modifier = Modifier.align(Alignment.CenterHorizontally)
@@ -164,7 +200,11 @@ fun ThemeCard(
                 title,
                 style = MaterialTheme.typography.labelMedium,
                 fontWeight = if (selected) FontWeight.Bold else FontWeight.Medium,
-                color = if (selected) Color.White else MaterialTheme.colorScheme.onSurface
+                color = if (selected) Color.White else MaterialTheme.colorScheme.onSurface,
+                textAlign = androidx.compose.ui.text.style.TextAlign.Center,
+                maxLines = 2,
+                overflow = androidx.compose.ui.text.style.TextOverflow.Ellipsis,
+                modifier = Modifier.padding(horizontal = 4.dp)
             )
         }
     }

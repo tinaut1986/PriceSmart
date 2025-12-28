@@ -3,6 +3,7 @@ package com.tinaut1986.pricesmart.ui.screens
 import java.util.Locale
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -31,18 +32,45 @@ fun CompareScreen(
     onAddClick: () -> Unit,
     onEditClick: (Product) -> Unit
 ) {
-    val sortedProducts = remember(products.toList()) {
-        products.sortedBy { it.pricePerBaseUnit }
+    val context = androidx.compose.ui.platform.LocalContext.current
+    val prefs = remember { context.getSharedPreferences("pricesmart_prefs", android.content.Context.MODE_PRIVATE) }
+    var isTutorialActive by remember { mutableStateOf(prefs.getBoolean("compare_tutorial_active", false)) }
+    var tutorialStep by remember { mutableStateOf(0) }
+
+    val displayProducts = if (isTutorialActive) {
+        listOf(
+            Product(id = 9991, name = "Producto A (Barato)", price = 1.0, quantityPerUnit = 1.0, unit = "kg"),
+            Product(id = 9992, name = "Producto B (Caro)", price = 1.5, quantityPerUnit = 1.0, unit = "kg"),
+            Product(
+                id = 9993, 
+                name = "Producto C (2ª al -80%)", 
+                price = 2.0, 
+                quantityPerUnit = 1.0, 
+                unit = "kg",
+                offer = com.tinaut1986.pricesmart.model.Offer(
+                    type = OfferType.NTH_UNIT_DISCOUNT, 
+                    value1 = 2.0, 
+                    value2 = 80.0
+                )
+            )
+        )
+    } else {
+        products
+    }
+
+    val sortedProducts = remember(displayProducts.toList()) {
+        displayProducts.sortedBy { it.pricePerBaseUnit }
     }
     
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(MaterialTheme.colorScheme.background)
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
-    ) {
-        if (products.isEmpty()) {
+    Box(modifier = Modifier.fillMaxSize()) {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(MaterialTheme.colorScheme.background)
+                .padding(16.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+        if (displayProducts.isEmpty()) {
             Spacer(modifier = Modifier.height(60.dp))
             Icon(
                 Icons.Filled.ShoppingCart,
@@ -88,7 +116,7 @@ fun CompareScreen(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 Text(
-                    stringResource(R.string.compare_products_count, products.size),
+                    stringResource(R.string.compare_products_count, displayProducts.size),
                     style = MaterialTheme.typography.titleMedium,
                     fontWeight = FontWeight.Bold,
                     color = if (isDarkMode) Color.White else Color(0xFF333333)
@@ -100,27 +128,154 @@ fun CompareScreen(
                 )
             }
             
-            Spacer(modifier = Modifier.height(16.dp))
+            var productToDelete by remember { mutableStateOf<Product?>(null) }
             
+            if (productToDelete != null) {
+                AlertDialog(
+                    onDismissRequest = { productToDelete = null },
+                    confirmButton = {
+                        TextButton(
+                            onClick = {
+                                products.removeAll { it.id == productToDelete?.id }
+                                productToDelete = null
+                            },
+                            colors = ButtonDefaults.textButtonColors(contentColor = Color(0xFFF44336))
+                        ) {
+                            Text(stringResource(R.string.delete_confirm_button))
+                        }
+                    },
+                    dismissButton = {
+                        TextButton(onClick = { productToDelete = null }) {
+                            Text(stringResource(R.string.delete_cancel_button))
+                        }
+                    },
+                    title = { Text(stringResource(R.string.delete_confirm_title)) },
+                    text = { Text(stringResource(R.string.delete_confirm_message, productToDelete?.name ?: "")) },
+                    shape = RoundedCornerShape(20.dp),
+                    containerColor = if (isDarkMode) Color(0xFF2E2E2E) else Color.White
+                )
+            }
+
             LazyColumn(
                 verticalArrangement = Arrangement.spacedBy(12.dp),
                 modifier = Modifier.fillMaxSize()
             ) {
-                items(sortedProducts, key = { it.id }) { product ->
+                items(sortedProducts, key = { it.id }) { product: Product ->
                     ProductCard(
                         isDarkMode = isDarkMode,
                         product = product,
                         position = sortedProducts.indexOf(product),
                         bestPricePerBaseUnit = sortedProducts.firstOrNull()?.pricePerBaseUnit ?: 0.0,
-                        onDelete = { productToDelete ->
-                            products.removeAll { it.id == productToDelete.id }
+                        onDelete = { prod ->
+                            productToDelete = prod
                         },
-                        onEdit = { onEditClick(product) }
+                        onEdit = { onEditClick(product) },
+                        tutorialStep = if (isTutorialActive) tutorialStep else -1
                     )
                 }
             }
         }
     }
+
+        // Tutorial Overlay
+        if (isTutorialActive) {
+            Box(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 16.dp, vertical = 80.dp),
+                contentAlignment = Alignment.BottomCenter
+            ) {
+                Card(
+                    shape = RoundedCornerShape(24.dp),
+                    colors = CardDefaults.cardColors(
+                        containerColor = Color(0xFF2E7D32),
+                        contentColor = Color.White
+                    ),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Column(modifier = Modifier.padding(20.dp)) {
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                when (tutorialStep) {
+                                    0 -> stringResource(R.string.tutorial_compare_welcome_title)
+                                    1 -> stringResource(R.string.tutorial_compare_best_title)
+                                    2 -> stringResource(R.string.tutorial_compare_diff_title)
+                                    else -> stringResource(R.string.tutorial_compare_actions_title)
+                                },
+                                style = MaterialTheme.typography.titleLarge,
+                                fontWeight = FontWeight.Bold
+                            )
+                            IconButton(onClick = {
+                                prefs.edit().putBoolean("compare_tutorial_active", false).apply()
+                                isTutorialActive = false
+                            }) {
+                                Icon(Icons.Filled.Close, contentDescription = null, tint = Color.White.copy(alpha = 0.7f))
+                            }
+                        }
+                        
+                        Spacer(modifier = Modifier.height(8.dp))
+                        
+                        Text(
+                            when (tutorialStep) {
+                                0 -> stringResource(R.string.tutorial_compare_welcome_desc)
+                                1 -> stringResource(R.string.tutorial_compare_best_desc)
+                                2 -> stringResource(R.string.tutorial_compare_diff_desc)
+                                else -> stringResource(R.string.tutorial_compare_actions_desc)
+                            },
+                            style = MaterialTheme.typography.bodyMedium
+                        )
+                        
+                        Spacer(modifier = Modifier.height(20.dp))
+                        
+                        Row(
+                            modifier = Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.End,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            TextBtn(onClick = {
+                                prefs.edit().putBoolean("compare_tutorial_active", false).apply()
+                                isTutorialActive = false
+                            }) {
+                                Text(stringResource(R.string.tutorial_skip), color = Color.White.copy(alpha = 0.7f))
+                            }
+                            
+                            Spacer(modifier = Modifier.width(8.dp))
+                            
+                            Button(
+                                onClick = {
+                                    if (tutorialStep < 3) tutorialStep++
+                                    else {
+                                        prefs.edit().putBoolean("compare_tutorial_active", false).apply()
+                                        isTutorialActive = false
+                                    }
+                                },
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = Color.White,
+                                    contentColor = Color(0xFF2E7D32)
+                                )
+                            ) {
+                                Text(
+                                    if (tutorialStep < 3) stringResource(R.string.tutorial_next) 
+                                    else stringResource(R.string.tutorial_finish),
+                                    fontWeight = FontWeight.Bold
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+fun TextBtn(onClick: () -> Unit, content: @Composable () -> Unit) {
+    TextButton(onClick = onClick) { content() }
 }
 
 @Composable
@@ -130,7 +285,8 @@ fun ProductCard(
     position: Int,
     bestPricePerBaseUnit: Double,
     onDelete: (Product) -> Unit,
-    onEdit: () -> Unit
+    onEdit: () -> Unit,
+    tutorialStep: Int = -1
 ) {
     val isBestOption = position == 0
     val cardBgColor = when {
@@ -176,6 +332,7 @@ fun ProductCard(
                             verticalAlignment = Alignment.CenterVertically,
                             modifier = Modifier.clip(RoundedCornerShape(12.dp))
                                 .background(Color(0xFF4CAF50))
+                                .then(if (tutorialStep == 1 && isBestOption) Modifier.border(2.dp, Color(0xFFFF9800), RoundedCornerShape(12.dp)) else Modifier)
                                 .padding(horizontal = 8.dp, vertical = 4.dp)
                         ) {
                             Icon(
@@ -253,7 +410,8 @@ fun ProductCard(
                 }
                 
                 Row(
-                    verticalAlignment = Alignment.CenterVertically
+                    verticalAlignment = Alignment.CenterVertically,
+                    modifier = Modifier.then(if (tutorialStep == 3 && position == 0) Modifier.border(2.dp, Color(0xFFFF9800), RoundedCornerShape(8.dp)) else Modifier)
                 ) {
                     Text(
                         "#${position + 1}",
@@ -372,7 +530,8 @@ fun ProductCard(
                         stringResource(R.string.compare_more_expensive, percentage),
                         style = MaterialTheme.typography.bodySmall,
                         color = Color(0xFFF44336),
-                        fontWeight = FontWeight.Medium
+                        fontWeight = FontWeight.Medium,
+                        modifier = Modifier.then(if (tutorialStep == 2 && position == 1) Modifier.border(2.dp, Color(0xFFFF9800), RoundedCornerShape(4.dp)) else Modifier)
                     )
                 }
             }

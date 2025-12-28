@@ -76,4 +76,42 @@
     <string name="offer_value_fixed_qty">Anzahl der Einheiten</string>
     <string name="offer_value_fixed_price">Gesamtpreis des Pakets</string>
     <string name="offer_value_extra_qty">Extra (%)</string>
+    <string name="delete_confirm_title">Produkt löschen?</string>
+    <string name="delete_confirm_message">Sind Sie sicher, dass Sie \"%s\" löschen möchten? Diese Aktion kann nicht rückgängig gemacht werden.</string>
+    <string name="delete_confirm_button">Löschen</string>
+    <string name="delete_cancel_button">Abbrechen</string>
+
+    <string name="product_show_extra">Zusatzoptionen anzeigen</string>
+    <string name="product_hide_extra">Zusatzoptionen ausblenden</string>
+
+    <string name="tutorial_skip">Überspringen</string>
+    <string name="tutorial_next">Weiter</string>
+    <string name="tutorial_finish">Verstanden</string>
+    <string name="tutorial_dont_show_again">Nicht mehr anzeigen</string>
+
+    <string name="tutorial_step_name_title">Produktname</string>
+    <string name="tutorial_step_name_desc">Geben Sie einen Namen ein, um es leichter zu identifizieren (optional).</string>
+    <string name="tutorial_step_price_title">Preis</string>
+    <string name="tutorial_step_price_desc">Geben Sie den Gesamtpreis wie auf dem Etikett an.</string>
+    <string name="tutorial_step_qty_title">Menge</string>
+    <string name="tutorial_step_qty_desc">Geben Sie das Gewicht oder Volumen an (z.B. 500 für 500g).</string>
+    <string name="tutorial_step_unit_title">Einheit</string>
+    <string name="tutorial_step_unit_desc">Wählen Sie die Maßeinheit, um den Basispreis zu berechnen.</string>
+    <string name="tutorial_step_extra_title">Packungseinheiten</string>
+    <string name="tutorial_step_extra_desc">Wenn es ein Pack ist, geben Sie an, wie viele Einheiten es enthält (z.B. 6er Pack).</string>
+    <string name="tutorial_step_offers_title">Angebote</string>
+    <string name="tutorial_step_offers_desc">Konfigurieren Sie Rabatte, 3x2, zweite Einheit und mehr, um die echte Ersparnis zu vergleichen.</string>
+
+    <string name="settings_tutorial">Tutorial</string>
+    <string name="settings_reset_tutorial">Tutorial ansehen</string>
+    <string name="settings_reset_tutorial_desc">Bringt Sie zur Produktseite mit Hilfeblasen</string>
+
+    <string name="tutorial_compare_welcome_title">Vergleichen und Sparen!</string>
+    <string name="tutorial_compare_welcome_desc">Hier sehen Sie Ihre Produkte automatisch sortiert, damit Sie immer wissen, welches das günstigste ist.</string>
+    <string name="tutorial_compare_best_title">Beste Option</string>
+    <string name="tutorial_compare_best_desc">Das Produkt mit dem niedrigsten Stückpreis wird automatisch mit diesem Abzeichen hervorgehoben.</string>
+    <string name="tutorial_compare_diff_title">Preisunterschied</string>
+    <string name="tutorial_compare_diff_desc">Wir zeigen Ihnen den genauen Prozentsatz, um wie viel teurer ein Produkt im Vergleich zum besten ist.</string>
+    <string name="tutorial_compare_actions_title">Verwaltung</string>
+    <string name="tutorial_compare_actions_desc">Sie können Produkte jederzeit über die Kartensymbole bearbeiten oder löschen.</string>
 </resources>
