@@ -44,13 +44,13 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
         name: PriceSmart-release-apk
-        path: ${{ steps.sign_app.outputs.signedReleaseFile }}
+        path: ${{ steps.sign_app.outputs.signedFile }}
 
     - name: Create Release
       if: startsWith(github.ref, 'refs/tags/v')
       uses: softprops/action-gh-release@v2
       with:
-        files: ${{ steps.sign_app.outputs.signedReleaseFile }}
+        files: ${{ steps.sign_app.outputs.signedFile }}
         generate_release_notes: true
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
