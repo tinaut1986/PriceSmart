@@ -2,9 +2,12 @@
 .gradle/
 build/
 app/build/
+app/release/
 *.apk
 *.aar
 *.jks
+*.keystore
+certificado_base64.txt
 
 # Configuración del IDE (Android Studio / IntelliJ)
 .idea/
