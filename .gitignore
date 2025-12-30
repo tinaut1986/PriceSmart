@@ -3,6 +3,8 @@
 build/
 app/build/
 app/release/
+app/debug/
+output-metadata.json
 *.apk
 *.aar
 *.jks
