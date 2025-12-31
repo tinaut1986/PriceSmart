@@ -18,8 +18,8 @@ android {
         applicationId = "com.tinaut1986.pricesmart"
         minSdk = 21
         targetSdk = 36
-        versionCode = 3
-        versionName = "1.0.4"
+        versionCode = 4
+        versionName = "1.1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
