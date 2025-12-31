@@ -3,7 +3,7 @@ package com.tinaut1986.pricesmart
 import android.os.Bundle
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.runtime.saveable.listSaver
@@ -27,7 +27,11 @@ import com.tinaut1986.pricesmart.ui.screens.SettingsScreen
 import com.tinaut1986.pricesmart.ui.theme.PriceSmartTheme
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
+import androidx.compose.ui.platform.LocalConfiguration
+import android.content.res.Configuration
+import androidx.compose.ui.unit.dp
 
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -91,29 +95,20 @@ fun PriceComparatorApp() {
     PriceSmartTheme(darkTheme = isDarkMode) {
         val navBackStackEntry by navController.currentBackStackEntryAsState()
         val currentRoute = navBackStackEntry?.destination?.route
+        val configuration = LocalConfiguration.current
+        val isLandscape = configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
 
-        Scaffold(
-            topBar = {
-                TopAppBar(
-                    title = { 
-                        Text(
-                            stringResource(R.string.app_name), 
-                            fontWeight = FontWeight.Bold,
-                            color = Color.White
-                        ) 
-                    },
-                    colors = TopAppBarDefaults.topAppBarColors(
-                        containerColor = Color(0xFF2E7D32),
-                        titleContentColor = Color.White
-                    )
-                )
-            },
-            bottomBar = {
-                NavigationBar(
+        // Root Row handles safe areas for the side navigation
+        Row(modifier = Modifier
+            .fillMaxSize()
+            .windowInsetsPadding(WindowInsets.safeDrawing) // This is the key fix for the notch!
+        ) {
+            if (isLandscape) {
+                NavigationRail(
                     containerColor = if (isDarkMode) Color(0xFF1A1A1A) else Color(0xFFF5F5F5)
                 ) {
                     listOf(ProductScreen.Compare, ProductScreen.Settings).forEach { screen ->
-                        NavigationBarItem(
+                        NavigationRailItem(
                             icon = { 
                                 Icon(
                                     screen.icon, 
@@ -140,122 +135,179 @@ fun PriceComparatorApp() {
                         )
                     }
                 }
-            },
-            floatingActionButton = {
-                if (currentRoute == ProductScreen.Compare.route) {
-                    FloatingActionButton(
-                        onClick = {
-                            navController.navigate(ProductScreen.Add.route) {
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
-                                }
-                                launchSingleTop = true
-                                restoreState = true
-                            }
-                        },
-                        containerColor = Color(0xFF2E7D32),
-                        contentColor = Color.White,
-                        shape = androidx.compose.foundation.shape.CircleShape
-                    ) {
-                        Icon(
-                            imageVector = androidx.compose.material.icons.Icons.Default.Add,
-                            contentDescription = stringResource(R.string.add_product_title)
-                        )
-                    }
-                }
             }
-        ) { padding ->
-            NavHost(
-                navController = navController, 
-                startDestination = ProductScreen.Compare.route,
-                modifier = Modifier.padding(padding)
-            ) {
-                composable(ProductScreen.Compare.route) { 
-                    CompareScreen(
-                        isDarkMode = isDarkMode,
-                        products = products,
-                        onAddClick = { 
-                            navController.navigate(ProductScreen.Add.route) {
-                                popUpTo(navController.graph.findStartDestination().id) {
-                                    saveState = true
-                                }
-                                launchSingleTop = true
-                                restoreState = true
-                            }
+
+            Scaffold(
+                topBar = {
+                    TopAppBar(
+                        title = { 
+                            Text(
+                                stringResource(R.string.app_name), 
+                                fontWeight = FontWeight.Bold,
+                                color = Color.White
+                            ) 
                         },
-                        onEditClick = { product -> 
-                            navController.navigate(ProductScreen.Edit.createRoute(product.id))
-                        }
-                    ) 
-                }
-                composable(ProductScreen.Add.route) { 
-                    AddEditProductScreen(
-                        isDarkMode = isDarkMode,
-                        onProductAction = { product ->
-                            products.add(product)
-                            navController.navigate(ProductScreen.Compare.route) {
-                                popUpTo(ProductScreen.Compare.route) { inclusive = true }
-                            }
-                        },
-                        onTutorialFinish = {
-                            navController.navigate(ProductScreen.Compare.route) {
-                                popUpTo(ProductScreen.Compare.route) { inclusive = true }
-                            }
-                        }
-                    ) 
-                }
-                composable(ProductScreen.Settings.route) {
-                    SettingsScreen(
-                        themeMode = themeModeState.value,
-                        onThemeModeChange = { themeModeState.value = it },
-                        isDarkMode = isDarkMode,
-                        currentLanguage = languageState.value,
-                        onLanguageChange = { newLanguage ->
-                            languageState.value = newLanguage
-                            val localeTag = when (newLanguage) {
-                                "English" -> "en"
-                                "Català" -> "ca"
-                                "Galego" -> "gl"
-                                "Euskara" -> "eu"
-                                "Français" -> "fr"
-                                "Português" -> "pt"
-                                "Deutsch" -> "de"
-                                "Nederlands" -> "nl"
-                                "中文" -> "zh"
-                                "日本語" -> "ja"
-                                else -> "es"
-                            }
-                            AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(localeTag))
-                        },
-                        onNavigateToAdd = {
-                            navController.navigate(ProductScreen.Add.route) {
-                                popUpTo(ProductScreen.Settings.route) {
-                                    inclusive = true
-                                }
-                            }
-                        }
-                    )
-                }
-                composable(ProductScreen.Edit.route) { backStackEntry ->
-                    val productId = backStackEntry.arguments?.getString("productId")?.toLongOrNull()
-                    val product = products.find { it.id == productId }
-                    if (product != null) {
-                        AddEditProductScreen(
-                            isDarkMode = isDarkMode,
-                            existingProduct = product,
-                            onProductAction = { updatedProduct ->
-                                val index = products.indexOfFirst { it.id == updatedProduct.id }
-                                if (index != -1) {
-                                    products[index] = updatedProduct
-                                }
-                                navController.popBackStack()
-                            },
-                            onTutorialFinish = {
-                                navController.navigate(ProductScreen.Compare.route) {
-                                    popUpTo(ProductScreen.Compare.route) { inclusive = true }
-                                }
-                            }
+                        colors = TopAppBarDefaults.topAppBarColors(
+                            containerColor = Color(0xFF2E7D32),
+                            titleContentColor = Color.White
                         )
+                    )
+                },
+                bottomBar = {
+                    if (!isLandscape) {
+                        NavigationBar(
+                            containerColor = if (isDarkMode) Color(0xFF1A1A1A) else Color(0xFFF5F5F5)
+                        ) {
+                            listOf(ProductScreen.Compare, ProductScreen.Settings).forEach { screen ->
+                                NavigationBarItem(
+                                    icon = { 
+                                        Icon(
+                                            screen.icon, 
+                                            contentDescription = null,
+                                            tint = if (currentRoute == screen.route) Color(0xFF2E7D32) else Color.Gray
+                                        ) 
+                                    },
+                                    label = { 
+                                        Text(
+                                            stringResource(screen.titleRes),
+                                            color = if (currentRoute == screen.route) Color(0xFF2E7D32) else Color.Gray
+                                        ) 
+                                    },
+                                    selected = currentRoute == screen.route,
+                                    onClick = {
+                                        navController.navigate(screen.route) {
+                                            popUpTo(navController.graph.findStartDestination().id) {
+                                                saveState = true
+                                            }
+                                            launchSingleTop = true
+                                            restoreState = true
+                                        }
+                                    }
+                                )
+                            }
+                        }
+                    }
+                },
+                floatingActionButton = {
+                    if (currentRoute == ProductScreen.Compare.route) {
+                        FloatingActionButton(
+                            onClick = {
+                                navController.navigate(ProductScreen.Add.route) {
+                                    popUpTo(navController.graph.findStartDestination().id) {
+                                        saveState = true
+                                    }
+                                    launchSingleTop = true
+                                    restoreState = true
+                                }
+                            },
+                            containerColor = Color(0xFF2E7D32),
+                            contentColor = Color.White,
+                            shape = androidx.compose.foundation.shape.CircleShape
+                        ) {
+                            Icon(
+                                imageVector = Icons.Default.Add,
+                                contentDescription = stringResource(R.string.add_product_title)
+                            )
+                        }
+                    }
+                },
+                // We use WindowInsets.none() because we already handle safeDrawing in the outer Row
+                contentWindowInsets = WindowInsets(0, 0, 0, 0)
+            ) { padding ->
+                Box(modifier = Modifier.padding(padding)) {
+                    NavHost(
+                        navController = navController, 
+                        startDestination = ProductScreen.Compare.route,
+                        modifier = Modifier.fillMaxSize()
+                    ) {
+                        composable(ProductScreen.Compare.route) { 
+                            CompareScreen(
+                                isDarkMode = isDarkMode,
+                                products = products,
+                                onAddClick = { 
+                                    navController.navigate(ProductScreen.Add.route) {
+                                        popUpTo(navController.graph.findStartDestination().id) {
+                                            saveState = true
+                                        }
+                                        launchSingleTop = true
+                                        restoreState = true
+                                    }
+                                },
+                                onEditClick = { product -> 
+                                    navController.navigate(ProductScreen.Edit.createRoute(product.id))
+                                }
+                            ) 
+                        }
+                        composable(ProductScreen.Add.route) { 
+                            AddEditProductScreen(
+                                isDarkMode = isDarkMode,
+                                onProductAction = { product ->
+                                    products.add(product)
+                                    navController.navigate(ProductScreen.Compare.route) {
+                                        popUpTo(ProductScreen.Compare.route) { inclusive = true }
+                                    }
+                                },
+                                onTutorialFinish = {
+                                    navController.navigate(ProductScreen.Compare.route) {
+                                        popUpTo(ProductScreen.Compare.route) { inclusive = true }
+                                    }
+                                }
+                            ) 
+                        }
+                        composable(ProductScreen.Settings.route) {
+                            SettingsScreen(
+                                themeMode = themeModeState.value,
+                                onThemeModeChange = { themeModeState.value = it },
+                                isDarkMode = isDarkMode,
+                                currentLanguage = languageState.value,
+                                onLanguageChange = { newLanguage ->
+                                    languageState.value = newLanguage
+                                    val localeTag = when (newLanguage) {
+                                        "English" -> "en"
+                                        "Català" -> "ca"
+                                        "Galego" -> "gl"
+                                        "Euskara" -> "eu"
+                                        "Français" -> "fr"
+                                        "Português" -> "pt"
+                                        "Deutsch" -> "de"
+                                        "Nederlands" -> "nl"
+                                        "中文" -> "zh"
+                                        "日本語" -> "ja"
+                                        else -> "es"
+                                    }
+                                    AppCompatDelegate.setApplicationLocales(LocaleListCompat.forLanguageTags(localeTag))
+                                },
+                                onNavigateToAdd = {
+                                    navController.navigate(ProductScreen.Add.route) {
+                                        popUpTo(ProductScreen.Settings.route) {
+                                            inclusive = true
+                                        }
+                                    }
+                                }
+                            )
+                        }
+                        composable(ProductScreen.Edit.route) { backStackEntry ->
+                            val productId = backStackEntry.arguments?.getString("productId")?.toLongOrNull()
+                            val product = products.find { it.id == productId }
+                            if (product != null) {
+                                AddEditProductScreen(
+                                    isDarkMode = isDarkMode,
+                                    existingProduct = product,
+                                    onProductAction = { updatedProduct ->
+                                        val index = products.indexOfFirst { it.id == updatedProduct.id }
+                                        if (index != -1) {
+                                            products[index] = updatedProduct
+                                        }
+                                        navController.popBackStack()
+                                    },
+                                    onTutorialFinish = {
+                                        navController.navigate(ProductScreen.Compare.route) {
+                                            popUpTo(ProductScreen.Compare.route) { inclusive = true }
+                                        }
+                                    }
+                                )
+                            }
+                        }
                     }
                 }
             }

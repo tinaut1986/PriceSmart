@@ -104,91 +104,124 @@ fun AddEditProductScreen(
         )
     }
 
-    // Force extra options during tutorial
+    val scrollState = rememberScrollState()
+
+    // Force extra options during tutorial and auto-scroll
     LaunchedEffect(tutorialStep) {
         if (tutorialStep >= 5) {
             showExtraOptions = true
         }
+        
+        // Dynamic scroll based on step
+        when (tutorialStep) {
+            in 0..3 -> scrollState.animateScrollTo(0)
+            5, 6 -> scrollState.animateScrollTo(Int.MAX_VALUE)
+        }
     }
 
     Box(modifier = Modifier.fillMaxSize()) {
+        val configuration = androidx.compose.ui.platform.LocalConfiguration.current
+        val isLandscape = configuration.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
+
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .background(MaterialTheme.colorScheme.background)
-                .padding(24.dp)
-                .verticalScroll(rememberScrollState()),
-            verticalArrangement = Arrangement.spacedBy(20.dp)
+                .padding(if (isLandscape) 16.dp else 24.dp)
+                .verticalScroll(scrollState),
+            verticalArrangement = Arrangement.spacedBy(if (isLandscape) 12.dp else 20.dp)
         ) {
         Column {
             Text(
                 if (isEditing) stringResource(R.string.edit_product_title) else stringResource(R.string.add_product_title),
-                style = MaterialTheme.typography.headlineMedium,
+                style = if (isLandscape) MaterialTheme.typography.titleLarge else MaterialTheme.typography.headlineMedium,
                 fontWeight = FontWeight.ExtraBold,
                 color = Color(0xFF2E7D32)
             )
-            Spacer(modifier = Modifier.height(4.dp))
-            Text(
-                stringResource(R.string.product_data_desc),
-                style = MaterialTheme.typography.bodyLarge,
-                color = Color(0xFF616161)
-            )
+            if (!isLandscape) {
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    stringResource(R.string.product_data_desc),
+                    style = MaterialTheme.typography.bodyLarge,
+                    color = Color(0xFF616161)
+                )
+            }
         }
 
         Column(
-            verticalArrangement = Arrangement.spacedBy(16.dp)
+            verticalArrangement = Arrangement.spacedBy(if (isLandscape) 10.dp else 16.dp)
         ) {
-            OutlinedTextField(
-                value = name,
-                onValueChange = { name = it },
-                label = { Text(stringResource(R.string.product_name)) },
-                placeholder = { Text(stringResource(R.string.product_name_placeholder)) },
-                modifier = Modifier.fillMaxWidth().then(
-                    if (tutorialStep == 0) Modifier.border(2.dp, Color(0xFFFF9800), RoundedCornerShape(14.dp))
-                    else Modifier
-                ),
-                shape = RoundedCornerShape(14.dp),
-                colors = textFieldColors,
-                singleLine = true
-            )
-
-            OutlinedTextField(
-                value = price,
-                onValueChange = {
-                    if (it.all { c -> c.isDigit() || c == '.' || c == ',' }) price =
-                        it.replace(',', '.')
-                },
-                label = { Text(stringResource(R.string.product_price)) },
-                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
-                modifier = Modifier.fillMaxWidth()
-                    .then(if (tutorialStep == 1) Modifier.border(2.dp, Color(0xFFFF9800), RoundedCornerShape(14.dp)) else Modifier),
-                shape = RoundedCornerShape(14.dp),
-                leadingIcon = {
-                    Icon(
-                        Icons.Filled.Euro,
-                        contentDescription = null,
-                        tint = Color(0xFF2E7D32)
+            if (isLandscape) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    OutlinedTextField(
+                        value = name,
+                        onValueChange = { name = it },
+                        label = { Text(stringResource(R.string.product_name)) },
+                        placeholder = { Text(stringResource(R.string.product_name_placeholder)) },
+                        modifier = Modifier.weight(1f).then(
+                            if (tutorialStep == 0) Modifier.border(2.dp, Color(0xFFFF9800), RoundedCornerShape(14.dp))
+                            else Modifier
+                        ),
+                        shape = RoundedCornerShape(14.dp),
+                        colors = textFieldColors,
+                        singleLine = true
                     )
-                },
-                colors = textFieldColors,
-                singleLine = true
-            )
 
-            if (showExtraOptions) {
+                    OutlinedTextField(
+                        value = price,
+                        onValueChange = {
+                            if (it.all { c -> c.isDigit() || c == '.' || c == ',' }) price =
+                                it.replace(',', '.')
+                        },
+                        label = { Text(stringResource(R.string.product_price)) },
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                        modifier = Modifier.weight(1f)
+                            .then(if (tutorialStep == 1) Modifier.border(2.dp, Color(0xFFFF9800), RoundedCornerShape(14.dp)) else Modifier),
+                        shape = RoundedCornerShape(14.dp),
+                        leadingIcon = {
+                            Icon(
+                                Icons.Filled.Euro,
+                                contentDescription = null,
+                                tint = Color(0xFF2E7D32),
+                                modifier = Modifier.size(18.dp)
+                            )
+                        },
+                        colors = textFieldColors,
+                        singleLine = true
+                    )
+                }
+            } else {
                 OutlinedTextField(
-                    value = unitsPerPackage,
-                    onValueChange = { if (it.all { c -> c.isDigit() }) unitsPerPackage = it },
-                    label = { Text(stringResource(R.string.product_units_per_package)) },
-                    placeholder = { Text(stringResource(R.string.product_units_placeholder)) },
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                    value = name,
+                    onValueChange = { name = it },
+                    label = { Text(stringResource(R.string.product_name)) },
+                    placeholder = { Text(stringResource(R.string.product_name_placeholder)) },
                     modifier = Modifier.fillMaxWidth().then(
-                        if (tutorialStep == 5) Modifier.border(2.dp, Color(0xFFFF9800), RoundedCornerShape(14.dp))
+                        if (tutorialStep == 0) Modifier.border(2.dp, Color(0xFFFF9800), RoundedCornerShape(14.dp))
                         else Modifier
                     ),
                     shape = RoundedCornerShape(14.dp),
+                    colors = textFieldColors,
+                    singleLine = true
+                )
+
+                OutlinedTextField(
+                    value = price,
+                    onValueChange = {
+                        if (it.all { c -> c.isDigit() || c == '.' || c == ',' }) price =
+                            it.replace(',', '.')
+                    },
+                    label = { Text(stringResource(R.string.product_price)) },
+                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                    modifier = Modifier.fillMaxWidth()
+                        .then(if (tutorialStep == 1) Modifier.border(2.dp, Color(0xFFFF9800), RoundedCornerShape(14.dp)) else Modifier),
+                    shape = RoundedCornerShape(14.dp),
                     leadingIcon = {
                         Icon(
-                            Icons.Filled.Layers,
+                            Icons.Filled.Euro,
                             contentDescription = null,
                             tint = Color(0xFF2E7D32)
                         )
@@ -198,63 +231,181 @@ fun AddEditProductScreen(
                 )
             }
 
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(12.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                OutlinedTextField(
-                    value = quantityPerUnit,
-                    onValueChange = {
-                        if (it.all { c -> c.isDigit() || c == '.' || c == ',' }) quantityPerUnit =
-                            it.replace(',', '.')
-                    },
-                    label = { Text(stringResource(R.string.product_quantity_per_unit)) },
-                    placeholder = { Text(stringResource(R.string.product_quantity_placeholder)) },
-                    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
-                    modifier = Modifier.weight(1f).then(
-                        if (tutorialStep == 2) Modifier.border(2.dp, Color(0xFFFF9800), RoundedCornerShape(14.dp))
-                        else Modifier
-                    ),
-                    shape = RoundedCornerShape(14.dp),
-                    colors = textFieldColors,
-                    singleLine = true
-                )
+            if (showExtraOptions) {
+                if (isLandscape) {
+                    Row(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        OutlinedTextField(
+                            value = unitsPerPackage,
+                            onValueChange = { if (it.all { c -> c.isDigit() }) unitsPerPackage = it },
+                            label = { Text(stringResource(R.string.product_units_per_package)) },
+                            placeholder = { Text(stringResource(R.string.product_units_placeholder)) },
+                            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                            modifier = Modifier.weight(1f).then(
+                                if (tutorialStep == 5) Modifier.border(2.dp, Color(0xFFFF9800), RoundedCornerShape(14.dp))
+                                else Modifier
+                            ),
+                            shape = RoundedCornerShape(14.dp),
+                            leadingIcon = {
+                                Icon(
+                                    Icons.Filled.Layers,
+                                    contentDescription = null,
+                                    tint = Color(0xFF2E7D32),
+                                    modifier = Modifier.size(18.dp)
+                                )
+                            },
+                            colors = textFieldColors,
+                            singleLine = true
+                        )
 
-                var expanded by remember { mutableStateOf(false) }
-                ExposedDropdownMenuBox(
-                    expanded = expanded,
-                    onExpandedChange = { expanded = !expanded },
-                    modifier = Modifier.width(130.dp).then(
-                        if (tutorialStep == 3) Modifier.border(2.dp, Color(0xFFFF9800), RoundedCornerShape(14.dp))
-                        else Modifier
+                        Row(
+                            modifier = Modifier.weight(1f),
+                            horizontalArrangement = Arrangement.spacedBy(12.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            OutlinedTextField(
+                                value = quantityPerUnit,
+                                onValueChange = {
+                                    if (it.all { c -> c.isDigit() || c == '.' || c == ',' }) quantityPerUnit =
+                                        it.replace(',', '.')
+                                },
+                                label = { Text(stringResource(R.string.product_quantity_per_unit)) },
+                                placeholder = { Text(stringResource(R.string.product_quantity_placeholder)) },
+                                keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                                modifier = Modifier.weight(1f).then(
+                                    if (tutorialStep == 2) Modifier.border(2.dp, Color(0xFFFF9800), RoundedCornerShape(14.dp))
+                                    else Modifier
+                                ),
+                                shape = RoundedCornerShape(14.dp),
+                                colors = textFieldColors,
+                                singleLine = true
+                            )
+
+                            var expanded by remember { mutableStateOf(false) }
+                            ExposedDropdownMenuBox(
+                                expanded = expanded,
+                                onExpandedChange = { expanded = !expanded },
+                                modifier = Modifier.width(110.dp).then(
+                                    if (tutorialStep == 3) Modifier.border(2.dp, Color(0xFFFF9800), RoundedCornerShape(14.dp))
+                                    else Modifier
+                                )
+                            ) {
+                                OutlinedTextField(
+                                    value = stringResource(
+                                        unitOptions.find { it.first == selectedUnitId }?.second
+                                            ?: R.string.unit_kg
+                                    ),
+                                    onValueChange = {},
+                                    readOnly = true,
+                                    label = { Text(stringResource(R.string.product_unit_label)) },
+                                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+                                    colors = textFieldColors,
+                                    modifier = Modifier.menuAnchor(MenuAnchorType.PrimaryNotEditable, true),
+                                    shape = RoundedCornerShape(14.dp)
+                                )
+                                ExposedDropdownMenu(
+                                    expanded = expanded,
+                                    onDismissRequest = { expanded = false }
+                                ) {
+                                    unitOptions.forEach { (id, resId) ->
+                                        DropdownMenuItem(
+                                            text = { Text(stringResource(resId), style = MaterialTheme.typography.bodySmall) },
+                                            onClick = {
+                                                selectedUnitId = id
+                                                expanded = false
+                                            }
+                                        )
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    OutlinedTextField(
+                        value = unitsPerPackage,
+                        onValueChange = { if (it.all { c -> c.isDigit() }) unitsPerPackage = it },
+                        label = { Text(stringResource(R.string.product_units_per_package)) },
+                        placeholder = { Text(stringResource(R.string.product_units_placeholder)) },
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
+                        modifier = Modifier.fillMaxWidth().then(
+                            if (tutorialStep == 5) Modifier.border(2.dp, Color(0xFFFF9800), RoundedCornerShape(14.dp))
+                            else Modifier
+                        ),
+                        shape = RoundedCornerShape(14.dp),
+                        leadingIcon = {
+                            Icon(
+                                Icons.Filled.Layers,
+                                contentDescription = null,
+                                tint = Color(0xFF2E7D32)
+                            )
+                        },
+                        colors = textFieldColors,
+                        singleLine = true
                     )
+                }
+            }
+
+            if (!isLandscape || !showExtraOptions) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    verticalAlignment = Alignment.CenterVertically
                 ) {
                     OutlinedTextField(
-                        value = stringResource(
-                            unitOptions.find { it.first == selectedUnitId }?.second
-                                ?: R.string.unit_kg
+                        value = quantityPerUnit,
+                        onValueChange = {
+                            if (it.all { c -> c.isDigit() || c == '.' || c == ',' }) quantityPerUnit =
+                                it.replace(',', '.')
+                        },
+                        label = { Text(stringResource(R.string.product_quantity_per_unit)) },
+                        placeholder = { Text(stringResource(R.string.product_quantity_placeholder)) },
+                        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+                        modifier = Modifier.weight(1f).then(
+                            if (tutorialStep == 2) Modifier.border(2.dp, Color(0xFFFF9800), RoundedCornerShape(14.dp))
+                            else Modifier
                         ),
-                        onValueChange = {},
-                        readOnly = true,
-                        label = { Text(stringResource(R.string.product_unit_label)) },
-                        trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+                        shape = RoundedCornerShape(14.dp),
                         colors = textFieldColors,
-                        modifier = Modifier.menuAnchor(MenuAnchorType.PrimaryNotEditable, true),
-                        shape = RoundedCornerShape(14.dp)
+                        singleLine = true
                     )
-                    ExposedDropdownMenu(
+
+                    var expanded by remember { mutableStateOf(false) }
+                    ExposedDropdownMenuBox(
                         expanded = expanded,
-                        onDismissRequest = { expanded = false }
+                        onExpandedChange = { expanded = !expanded },
+                        modifier = Modifier.width(130.dp).then(
+                            if (tutorialStep == 3) Modifier.border(2.dp, Color(0xFFFF9800), RoundedCornerShape(14.dp))
+                            else Modifier
+                        )
                     ) {
-                        unitOptions.forEach { (id, resId) ->
-                            DropdownMenuItem(
-                                text = { Text(stringResource(resId)) },
-                                onClick = {
-                                    selectedUnitId = id
-                                    expanded = false
-                                }
-                            )
+                        OutlinedTextField(
+                            value = stringResource(
+                                unitOptions.find { it.first == selectedUnitId }?.second
+                                    ?: R.string.unit_kg
+                            ),
+                            onValueChange = {},
+                            readOnly = true,
+                            label = { Text(stringResource(R.string.product_unit_label)) },
+                            trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+                            colors = textFieldColors,
+                            modifier = Modifier.menuAnchor(MenuAnchorType.PrimaryNotEditable, true),
+                            shape = RoundedCornerShape(14.dp)
+                        )
+                        ExposedDropdownMenu(
+                            expanded = expanded,
+                            onDismissRequest = { expanded = false }
+                        ) {
+                            unitOptions.forEach { (id, resId) ->
+                                DropdownMenuItem(
+                                    text = { Text(stringResource(resId)) },
+                                    onClick = {
+                                        selectedUnitId = id
+                                        expanded = false
+                                    }
+                                )
+                            }
                         }
                     }
                 }
@@ -587,7 +738,7 @@ fun AddEditProductScreen(
                     ),
                     elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
                     modifier = Modifier
-                        .fillMaxWidth()
+                        .fillMaxWidth(if (isLandscape) 0.6f else 1f)
                         .padding(top = if (tutorialStep >= 6) 48.dp else 0.dp, bottom = if (tutorialStep < 6) 12.dp else 0.dp)
                 ) {
                     Column(modifier = Modifier.padding(20.dp)) {

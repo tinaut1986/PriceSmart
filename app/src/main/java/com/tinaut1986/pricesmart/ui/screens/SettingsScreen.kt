@@ -31,37 +31,56 @@ fun SettingsScreen(
     onLanguageChange: (String) -> Unit,
     onNavigateToAdd: () -> Unit
 ) {
+    val configuration = androidx.compose.ui.platform.LocalConfiguration.current
+    val isLandscape = configuration.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
+
     Column(
         modifier = Modifier
             .fillMaxSize()
             .background(MaterialTheme.colorScheme.background)
-            .padding(24.dp)
+            .padding(if (isLandscape) 16.dp else 24.dp)
             .verticalScroll(rememberScrollState()),
-        verticalArrangement = Arrangement.spacedBy(16.dp)
+        verticalArrangement = Arrangement.spacedBy(if (isLandscape) 12.dp else 16.dp)
     ) {
         Text(
             stringResource(R.string.screen_settings),
-            style = MaterialTheme.typography.headlineMedium,
+            style = if (isLandscape) MaterialTheme.typography.titleLarge else MaterialTheme.typography.headlineMedium,
             fontWeight = FontWeight.ExtraBold,
             color = if (isDarkMode) Color.White else Color(0xFF2E7D32)
         )
         
-        Spacer(modifier = Modifier.height(8.dp))
-        
-        // Appearance Section
-        SettingsSection(title = stringResource(R.string.settings_appearance)) {
-            SettingsThemeItem(
-                currentMode = themeMode,
-                onModeChange = onThemeModeChange
-            )
-        }
-        
-        // Language Section
-        SettingsSection(title = stringResource(R.string.settings_language)) {
-            SettingsLanguageItem(
-                currentLanguage = currentLanguage,
-                onLanguageChange = onLanguageChange
-            )
+        if (isLandscape) {
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                Box(modifier = Modifier.weight(1f)) {
+                    SettingsSection(title = stringResource(R.string.settings_appearance)) {
+                        SettingsThemeItem(currentMode = themeMode, onModeChange = onThemeModeChange)
+                    }
+                }
+                Box(modifier = Modifier.weight(1f)) {
+                    SettingsSection(title = stringResource(R.string.settings_language)) {
+                        SettingsLanguageItem(currentLanguage = currentLanguage, onLanguageChange = onLanguageChange)
+                    }
+                }
+            }
+        } else {
+            // Appearance Section
+            SettingsSection(title = stringResource(R.string.settings_appearance)) {
+                SettingsThemeItem(
+                    currentMode = themeMode,
+                    onModeChange = onThemeModeChange
+                )
+            }
+            
+            // Language Section
+            SettingsSection(title = stringResource(R.string.settings_language)) {
+                SettingsLanguageItem(
+                    currentLanguage = currentLanguage,
+                    onLanguageChange = onLanguageChange
+                )
+            }
         }
 
         // Tutorial Section
@@ -91,7 +110,7 @@ fun SettingsScreen(
             }
         }
         
-        Spacer(modifier = Modifier.weight(1f))
+        if (!isLandscape) Spacer(modifier = Modifier.weight(1f))
         
         val versionName = try {
             val packageInfo = context.packageManager.getPackageInfo(context.packageName, 0)
@@ -104,7 +123,7 @@ fun SettingsScreen(
             stringResource(R.string.settings_version, versionName ?: "1.0.3"),
             style = MaterialTheme.typography.labelSmall,
             color = Color.Gray,
-            modifier = Modifier.align(Alignment.CenterHorizontally)
+            modifier = Modifier.align(Alignment.CenterHorizontally).padding(vertical = 8.dp)
         )
     }
 }

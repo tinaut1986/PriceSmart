@@ -36,6 +36,17 @@ fun CompareScreen(
     val prefs = remember { context.getSharedPreferences("pricesmart_prefs", android.content.Context.MODE_PRIVATE) }
     var isTutorialActive by remember { mutableStateOf(prefs.getBoolean("compare_tutorial_active", false)) }
     var tutorialStep by remember { mutableStateOf(0) }
+    val listState = androidx.compose.foundation.lazy.rememberLazyListState()
+
+    // Auto-scroll during tutorial
+    LaunchedEffect(tutorialStep) {
+        if (isTutorialActive) {
+            when (tutorialStep) {
+                1, 3 -> listState.animateScrollToItem(0)
+                2 -> listState.animateScrollToItem(1)
+            }
+        }
+    }
 
     val displayProducts = if (isTutorialActive) {
         listOf(
@@ -157,6 +168,7 @@ fun CompareScreen(
             }
 
             LazyColumn(
+                state = listState,
                 verticalArrangement = Arrangement.spacedBy(12.dp),
                 modifier = Modifier.fillMaxSize()
             ) {
@@ -179,6 +191,8 @@ fun CompareScreen(
 
         // Tutorial Overlay
         if (isTutorialActive) {
+            val configuration = androidx.compose.ui.platform.LocalConfiguration.current
+            val isLandscape = configuration.orientation == android.content.res.Configuration.ORIENTATION_LANDSCAPE
             val alignment = if (tutorialStep == 2) Alignment.TopCenter else Alignment.BottomCenter
             Box(
                 modifier = Modifier
@@ -194,7 +208,7 @@ fun CompareScreen(
                     ),
                     elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
                     modifier = Modifier
-                        .fillMaxWidth()
+                        .fillMaxWidth(if (isLandscape) 0.6f else 1f)
                         .padding(top = if (tutorialStep == 2) 64.dp else 0.dp, bottom = if (tutorialStep != 2) 64.dp else 0.dp)
                 ) {
                     Column(modifier = Modifier.padding(20.dp)) {
