@@ -572,11 +572,12 @@ fun AddEditProductScreen(
 
         // Tutorial Overlay (Non-modal)
         if (tutorialStep >= 0) {
+            val alignment = if (tutorialStep >= 6) Alignment.TopCenter else Alignment.BottomCenter
             Box(
                 modifier = Modifier
                     .fillMaxSize()
                     .padding(16.dp),
-                contentAlignment = Alignment.BottomCenter
+                contentAlignment = alignment
             ) {
                 Card(
                     shape = RoundedCornerShape(24.dp),
@@ -585,7 +586,9 @@ fun AddEditProductScreen(
                         contentColor = Color.White
                     ),
                     elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = if (tutorialStep >= 6) 48.dp else 0.dp, bottom = if (tutorialStep < 6) 12.dp else 0.dp)
                 ) {
                     Column(modifier = Modifier.padding(20.dp)) {
                         Row(

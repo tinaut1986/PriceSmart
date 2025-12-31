@@ -179,11 +179,12 @@ fun CompareScreen(
 
         // Tutorial Overlay
         if (isTutorialActive) {
+            val alignment = if (tutorialStep == 2) Alignment.TopCenter else Alignment.BottomCenter
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(horizontal = 16.dp, vertical = 80.dp),
-                contentAlignment = Alignment.BottomCenter
+                    .padding(horizontal = 16.dp, vertical = 16.dp),
+                contentAlignment = alignment
             ) {
                 Card(
                     shape = RoundedCornerShape(24.dp),
@@ -192,7 +193,9 @@ fun CompareScreen(
                         contentColor = Color.White
                     ),
                     elevation = CardDefaults.cardElevation(defaultElevation = 8.dp),
-                    modifier = Modifier.fillMaxWidth()
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(top = if (tutorialStep == 2) 64.dp else 0.dp, bottom = if (tutorialStep != 2) 64.dp else 0.dp)
                 ) {
                     Column(modifier = Modifier.padding(20.dp)) {
                         Row(
